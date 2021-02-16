@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="350dp"
+    android:background="?attr/selectableItemBackground"
+    app:cardCornerRadius="15dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginEnd="5dp"
+    android:layout_marginBottom="10dp"
+    android:layout_marginTop="10dp"
+    android:elevation="8dp"
+
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/imageViewAnimalItemFeed"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/appCompatImageView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/bg_gradient_dark"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewAnimalItemFeed" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textNameAnimalItemFeed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            app:fontFamily="@font/quicksand_medium"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:drawableStart="@drawable/ic_pets"
+            android:drawablePadding="8dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/quicksand_medium"
+            android:layout_marginStart="10dp"
+            android:drawableTint="@color/white"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintBottom_toTopOf="@+id/textViewAddressItemFeed"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Nome" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewAddressItemFeed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:maxLines="1"
+            tools:text="Endereço "
+            android:drawableStart="@drawable/ic_location"
+            android:drawablePadding="8dp"
+            android:drawableTint="@color/white"
+            app:fontFamily="@font/quicksand_medium"
+            android:ellipsize="end"
+            android:fontFamily="@font/quicksand_medium"
+            android:textColor="@color/white"
+            app:layout_constraintHorizontal_bias="0"
+            android:layout_marginStart="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

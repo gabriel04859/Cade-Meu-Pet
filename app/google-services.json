@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "209733653062",
+    "project_id": "cademeupet-5fd08",
+    "storage_bucket": "cademeupet-5fd08.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:209733653062:android:c57238035aefc25de97047",
+        "android_client_info": {
+          "package_name": "com.gabriel.ribeiro.cademeupet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "209733653062-vmhepdselse8fkknputvhvcvv2q8r7pv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALjD7SR9qUAt0rsrOLZJhJ5FgGaCTDctY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "209733653062-vmhepdselse8fkknputvhvcvv2q8r7pv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

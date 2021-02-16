@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary"
+    tools:context=".ui.fragments.RegisterFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonOpenGalery"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:background="@drawable/bg_button_open_galery"
+            android:text="@string/clique_aqui"
+            android:textColor="@color/colorWhite"
+            android:fontFamily="@font/quicksand_medium"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageViewUserPhotoRegister"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            app:civ_border_color="@color/colorSalmao"
+            app:civ_border_width="2dp"
+            android:layout_marginTop="16dp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="22dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonOpenGalery">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editTextNameRegister"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edit_login"
+                android:drawableStart="@drawable/ic_profile"
+                android:drawablePadding="10dp"
+                android:fontFamily="@font/quicksand_medium"
+                android:hint="@string/name"
+                android:inputType="textPersonName" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editTextLastNameRegister"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edit_login"
+                android:drawableStart="@drawable/ic_profile"
+                android:drawablePadding="10dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/quicksand_medium"
+                android:hint="Sobrenome"
+                android:inputType="textPersonName" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editTextEmailRegister"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_edit_login"
+                android:drawableStart="@drawable/ic_email"
+                android:drawablePadding="10dp"
+                android:fontFamily="@font/quicksand_medium"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress" />
+
+
+            <com.github.pinball83.maskededittext.MaskedEditText
+                android:id="@+id/editTextPhoneRegister"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_edit_login"
+                android:drawableStart="@drawable/ic_phone"
+                android:drawablePadding="10dp"
+                android:inputType="phone"
+                app:mask="+55 (**) ***** - ****"
+                app:notMaskedSymbol="*" />
+
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editTextPasswordRegister"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_edit_login"
+                android:drawableStart="@drawable/ic_password"
+                android:drawablePadding="10dp"
+                android:fontFamily="@font/quicksand_medium"
+                android:hint="@string/password"
+                android:inputType="textPassword" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editTextPasswordConfirmRegister"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_edit_login"
+                android:drawableStart="@drawable/ic_password"
+                android:drawablePadding="10dp"
+                android:fontFamily="@font/quicksand_medium"
+                android:hint="Confirme sua senha"
+                android:inputType="textPassword" />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonRegister"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_button_default"
+                android:fontFamily="@font/quicksand_medium"
+                android:text="@string/register"
+                android:textAllCaps="false"
+                android:layout_marginTop="30dp"
+                android:textColor="@color/white" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

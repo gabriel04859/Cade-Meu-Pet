@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="10dp"
+    android:elevation="8dp"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="22dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewAddressIs"
+            android:layout_width="wrap_content"
+            android:fontFamily="@font/quicksand_medium"
+            android:layout_height="wrap_content"
+            android:text="O endereço selecionado foi:"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewAddressDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_marginEnd="22dp"
+            app:layout_constraintHorizontal_bias="0"
+            android:fontFamily="@font/quicksand_medium"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/textViewConfirm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewAddressIs"
+            tools:text="Rua tal tal tal" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewConfirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tem_certeza"
+            android:textColor="@color/black"
+            android:fontFamily="@font/quicksand_medium"
+            android:textSize="14sp"
+            android:layout_marginStart="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewAddressDialog" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewNoDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="@string/nao"
+            android:textSize="14sp"
+            android:layout_marginEnd="22dp"
+            android:fontFamily="@font/quicksand_medium"
+            app:layout_constraintBottom_toBottomOf="@+id/buttonConfirmDialogAddress"
+            app:layout_constraintEnd_toStartOf="@+id/buttonConfirmDialogAddress"
+            app:layout_constraintTop_toTopOf="@+id/buttonConfirmDialogAddress" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonConfirmDialogAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_button_default"
+            android:text="@string/confirmar"
+            android:fontFamily="@font/quicksand_medium"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:layout_marginTop="22dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewConfirm" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

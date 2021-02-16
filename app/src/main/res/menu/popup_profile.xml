@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/popupUpdateProfile"
+        android:title="Editar perfil"/>
+
+    <item android:id="@+id/popupSignOutProfile"
+        android:title="Encerrar sessão"/>
+
+</menu>

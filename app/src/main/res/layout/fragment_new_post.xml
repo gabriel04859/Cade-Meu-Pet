@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorBackground"
+    tools:context=".ui.fragments.NewPostFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ProgressBar
+            android:id="@+id/progressBarNewPost"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:focusable="true" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewAnimalNP"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:scaleType="fitXY"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonChoiceAnimalImageNP"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:textColor="@color/colorWhite"
+            android:background="@color/colorPrimary"
+            android:text="@string/clique_aqui"
+            android:fontFamily="@font/quicksand_medium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:orientation="vertical"
+            android:padding="22dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewAnimalNP">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editTextNameNP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edit_login"
+                android:drawableTint="@color/black"
+                android:drawableStart="@drawable/ic_pets"
+                android:fontFamily="@font/quicksand_medium"
+                android:drawablePadding="10dp"
+                android:ems="10"
+                android:hint="@string/name"
+                android:inputType="textPersonName" />
+
+            <RadioGroup
+                android:id="@+id/radioGroupSex"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="5dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radioButtonMale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_margin="5dp"
+                    android:textColor="@drawable/text_color_radio"
+                    android:background="@drawable/bg_radion_button_selector"
+                    android:button="@android:color/transparent"
+                    android:elevation="4dp"
+                    android:fontFamily="@font/quicksand_medium"
+                    android:text="@string/macho" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonFemale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:button="@android:color/transparent"
+                    android:textColor="@drawable/text_color_radio"
+                    android:elevation="4dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/bg_radion_button_selector"
+                    android:fontFamily="@font/quicksand_medium"
+                    android:text="@string/femea" />
+            </RadioGroup>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewAddressNP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="?attr/selectableItemBackground"
+                android:fontFamily="@font/quicksand_medium"
+                android:layout_marginBottom="10dp"
+                android:drawableStart="@drawable/ic_place"
+                android:drawablePadding="10dp"
+                android:textSize="18sp" />
+
+            <com.github.pinball83.maskededittext.MaskedEditText
+                android:id="@+id/editTextDataNP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_edit_login"
+                android:fontFamily="@font/quicksand_medium"
+                android:drawableStart="@drawable/ic_date"
+                android:drawablePadding="10dp"
+                android:ems="10"
+                android:hint="@string/date"
+                android:textColor="@color/black"
+                android:inputType="date"
+                app:mask="**/**/****"
+                app:notMaskedSymbol="*"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewSize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:fontFamily="@font/quicksand_medium"
+                android:text="@string/indique_o_porte_abaixo"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <SeekBar
+                android:id="@+id/seekBarPorte"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:max="3" />
+
+            <RadioGroup
+                android:id="@+id/radioGroupLostOrDonateOrFind"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="8dp"
+                android:orientation="horizontal">
+
+
+                <RadioButton
+                    android:id="@+id/radioButtonLost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:textColor="@drawable/text_color_radio"
+                    android:background="@drawable/bg_radion_button_selector"
+                    android:button="@android:color/transparent"
+                    android:elevation="4dp"
+                    android:fontFamily="@font/quicksand_medium"
+                    android:text="@string/lost" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonFinder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:textColor="@drawable/text_color_radio"
+                    android:background="@drawable/bg_radion_button_selector"
+                    android:button="@android:color/transparent"
+                    android:elevation="4dp"
+                    android:fontFamily="@font/quicksand_medium"
+                    android:text="@string/finder" />
+
+                <RadioButton
+                    android:id="@+id/radioButtoDonate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:textColor="@drawable/text_color_radio"
+                    android:background="@drawable/bg_radion_button_selector"
+                    android:button="@android:color/transparent"
+                    android:elevation="4dp"
+                    android:fontFamily="@font/quicksand_medium"
+                    android:text="@string/donate" />
+            </RadioGroup>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editTextCommentNP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_edit_login"
+                android:drawablePadding="10dp"
+                android:hint="@string/coment"
+                android:fontFamily="@font/quicksand_medium"
+                android:inputType="text" />
+
+            <Button
+                android:id="@+id/buttonPost"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/bg_button_default"
+                android:text="@string/publicar"
+                android:textColor="@color/colorWhite"
+                android:fontFamily="@font/quicksand_medium"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
