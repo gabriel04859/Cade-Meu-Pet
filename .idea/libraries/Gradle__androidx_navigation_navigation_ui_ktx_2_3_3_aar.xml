@@ -2,9 +2,10 @@
   <library name="Gradle: androidx.navigation:navigation-ui-ktx:2.3.3@aar">
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5895f06b73aed87f9ba05aedc43237d4/navigation-ui-ktx-2.3.3/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/baeb3a8fdeb94815c8ecd5993e80daa1/navigation-ui-ktx-2.3.3/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/baeb3a8fdeb94815c8ecd5993e80daa1/navigation-ui-ktx-2.3.3/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/baeb3a8fdeb94815c8ecd5993e80daa1/navigation-ui-ktx-2.3.3/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2f55496250e6dfbdd1b6da7f5389f1fa/navigation-ui-ktx-2.3.3/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2f55496250e6dfbdd1b6da7f5389f1fa/navigation-ui-ktx-2.3.3/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2f55496250e6dfbdd1b6da7f5389f1fa/navigation-ui-ktx-2.3.3/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

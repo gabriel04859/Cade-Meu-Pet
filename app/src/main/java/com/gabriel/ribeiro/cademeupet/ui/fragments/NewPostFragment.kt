@@ -25,20 +25,26 @@ import com.gabriel.ribeiro.cademeupet.repository.NewPostRepositoryImple
 import com.gabriel.ribeiro.cademeupet.ui.activitys.PrincipalActivity
 import com.gabriel.ribeiro.cademeupet.ui.viewmodel.NewPostViewModel
 import com.gabriel.ribeiro.cademeupet.utils.Constants
+import com.gabriel.ribeiro.cademeupet.utils.Constants.Companion.TAG
 import com.gabriel.ribeiro.cademeupet.utils.CustomToast
 import com.gabriel.ribeiro.cademeupet.utils.OpenGalery
 import com.gabriel.ribeiro.cademeupet.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class NewPostFragment : Fragment(R.layout.fragment_new_post) {
+class NewPostFragment : Fragment(R.layout.fragment_new_post), View.OnClickListener {
     private var _binding : FragmentNewPostBinding? = null
     private val binding : FragmentNewPostBinding get() = _binding!!
 
-    private var imageUri : Uri? = null
+    private var imageUri1 : Uri? = null
+    private var imageUri2 : Uri? = null
+    private var imageUri3 : Uri? = null
+    private var imageUri4 : Uri? = null
+
     private var maleOrFemale = ""
     private var donateOrLostOrFinder = ""
     private var size = ""
+    private var imageUriList = ArrayList<Uri>()
 
     private lateinit var address: Address
 
@@ -61,7 +67,13 @@ class NewPostFragment : Fragment(R.layout.fragment_new_post) {
 
             address = it.getParcelable("latLngAddress")!!
             Log.i("TESTE","$address")
-            binding.textViewAddressNP.text = "${address.street} - ${address.city}"
+            val addressString = "${address.street} - ${address.city}"
+            binding.textViewAddressNP.text = addressString
+
+            binding.includeButtonsPickImage.buttonChoiceAnimalImage01.setOnClickListener(this)
+            binding.includeButtonsPickImage.buttonChoiceAnimalImage02.setOnClickListener(this)
+            binding.includeButtonsPickImage.buttonChoiceAnimalImage03.setOnClickListener(this)
+            binding.includeButtonsPickImage.buttonChoiceAnimalImage04.setOnClickListener(this)
 
 
         }
@@ -139,21 +151,35 @@ class NewPostFragment : Fragment(R.layout.fragment_new_post) {
                 CustomToast.showToast(requireContext(),getString(R.string.indique_a_situacao_do_animal))
                 return@setOnClickListener
             }
-            if (imageUri == null){
+
+            addImageUriToList()
+            if (imageUriList.isEmpty()){
                 CustomToast.showToast(requireContext(),getString(R.string.selecione_uma_foto))
                 return@setOnClickListener
             }
 
             val animal = Animal(name,getAnimalType()!!,maleOrFemale,size,donateOrLostOrFinder)
             Log.d(Constants.TAG, "onViewCreated: Animal: $animal")
-            newPostViewModel.createPost(imageUri!!,animal,address,date,comment)
-
+            newPostViewModel.createPost(imageUriList,animal,address,date,comment)
+            
         }
-        /*address = intent.extras?.getParcelable(Constants.ADDRESS_KEY)!!
-        address.apply {
-            binding.textViewAddressNP.text = "$street - $neighborhood - $city"
-        }*/
 
+    }
+
+    private fun addImageUriToList() {
+        if (imageUri1 != null){
+            imageUriList.add(imageUri1!!)
+        }
+        if (imageUri2 != null){
+            imageUriList.add(imageUri2!!)
+        }
+        if (imageUri3 != null){
+            imageUriList.add(imageUri3!!)
+        }
+        if (imageUri4 != null){
+            imageUriList.add(imageUri4!!)
+        }
+        Log.d(TAG, "onViewCreated: IMAGE URI: ${imageUriList.toString()}")
 
     }
 
@@ -164,11 +190,29 @@ class NewPostFragment : Fragment(R.layout.fragment_new_post) {
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == Constants.PICK_IMAGE && resultCode == AppCompatActivity.RESULT_OK && data?.data != null){
-            imageUri = data.data
-            binding.imageViewAnimalNP.setImageURI(imageUri)
-            binding.buttonChoiceAnimalImageNP.alpha = 0F
-
+        if(resultCode == AppCompatActivity.RESULT_OK && data?.data != null){
+            when(requestCode){
+                Constants.PIC_IMAGE_01 -> {
+                    imageUri1 = data.data
+                    binding.includeButtonsPickImage.imageViewChoiceAnimalImage01.setImageURI(imageUri1)
+                    binding.includeButtonsPickImage.buttonChoiceAnimalImage01.alpha = 0F
+                }
+                Constants.PIC_IMAGE_02 ->{
+                    imageUri2 = data.data
+                    binding.includeButtonsPickImage.imageViewChoiceAnimalImage02.setImageURI(imageUri2)
+                    binding.includeButtonsPickImage.buttonChoiceAnimalImage02.alpha = 0F
+                }
+                Constants.PIC_IMAGE_03 ->{
+                    imageUri3 = data.data
+                    binding.includeButtonsPickImage.imageViewChoiceAnimalImage03.setImageURI(imageUri3)
+                    binding.includeButtonsPickImage.buttonChoiceAnimalImage03.alpha = 0F
+                }
+                Constants.PIC_IMAGE_04 ->{
+                    imageUri4 = data.data
+                    binding.includeButtonsPickImage.imageViewChoiceAnimalImage04.setImageURI(imageUri4)
+                    binding.includeButtonsPickImage.buttonChoiceAnimalImage04.alpha = 0F
+                }
+            }
         }
     }
 
@@ -198,6 +242,16 @@ class NewPostFragment : Fragment(R.layout.fragment_new_post) {
     override fun onDestroy() {
         _binding = null
         super.onDestroy()
+    }
+
+    override fun onClick(v: View?) {
+        when(v?.id){
+            R.id.buttonChoiceAnimalImage01 ->  startActivityForResult(OpenGalery.openGalery(), Constants.PIC_IMAGE_01)
+            R.id.buttonChoiceAnimalImage02 -> startActivityForResult(OpenGalery.openGalery(), Constants.PIC_IMAGE_02)
+            R.id.buttonChoiceAnimalImage03 -> startActivityForResult(OpenGalery.openGalery(), Constants.PIC_IMAGE_03)
+            R.id.buttonChoiceAnimalImage04 -> startActivityForResult(OpenGalery.openGalery(), Constants.PIC_IMAGE_04)
+        }
+
     }
 
 }

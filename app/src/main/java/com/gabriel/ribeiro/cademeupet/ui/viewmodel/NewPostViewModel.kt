@@ -17,10 +17,10 @@ class NewPostViewModel @Inject constructor(private val newPostRepository: NewPos
     private var _statusSavePost = MutableLiveData<Resource<Boolean>>()
     val statusSavePost : LiveData<Resource<Boolean>> get() = _statusSavePost
 
-    fun createPost(imageUri: Uri, animal: Animal, address: Address, date: String, comment: String){
+    fun createPost(imageUriList: ArrayList<Uri>, animal: Animal, address: Address, date: String, comment: String){
         viewModelScope.launch {
 
-            _statusSavePost.value = newPostRepository.createPost(imageUri,animal,address,date,comment).value
+            _statusSavePost.value = newPostRepository.createPost(imageUriList,animal,address,date,comment).value
 
 
         }

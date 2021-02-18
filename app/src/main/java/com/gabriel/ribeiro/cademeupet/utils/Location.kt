@@ -10,11 +10,8 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
 
 class Location(private val onGetCurrentLatLng: OnGetCurrentLatLng? = null) {
 
@@ -23,7 +20,9 @@ class Location(private val onGetCurrentLatLng: OnGetCurrentLatLng? = null) {
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context)
         try {
             val location= fusedLocationProviderClient.lastLocation
+
             val currentLocation = LatLng(location.await().latitude,location.await().longitude)
+            delay(2000L)
             onGetCurrentLatLng?.onGetCurrentLatLng(currentLocation)
 
             withContext(Dispatchers.Main){

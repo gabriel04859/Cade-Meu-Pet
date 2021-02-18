@@ -33,6 +33,8 @@ class PickAddressMapsFragment : Fragment(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     private val location = Location()
 
+
+
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,

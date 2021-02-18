@@ -9,5 +9,5 @@ data class Animal(val name : String? = "",
                   val sex : String? = "",
                   val size : String? = "",
                   val status :String? = "",
-                  var imageAnimal : String? = "") : Parcelable {
+                  var images : ArrayList<String>? = null) : Parcelable {
 }

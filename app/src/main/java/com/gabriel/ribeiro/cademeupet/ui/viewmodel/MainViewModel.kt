@@ -15,9 +15,4 @@ class MainViewModel @Inject constructor(private val repository : MainRepository)
     val postsOfCurrentUser : LiveData<Resource<MutableList<Post>>>  = repository.gePostsOfCurrentUser()
     val contacts :LiveData<Resource<MutableList<Contact>>> = repository.getLastMessages()
 
-    class MainViewModelFactory(private val repository: MainRepository) : ViewModelProvider.Factory {
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return MainViewModel(repository) as T
-        }
-    }
 }

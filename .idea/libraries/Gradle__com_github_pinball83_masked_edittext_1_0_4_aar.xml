@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.pinball83:masked-edittext:1.0.4@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1bbbf708b39b3e63a4b8f646bbd839e6/jetified-masked-edittext-1.0.4/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1bbbf708b39b3e63a4b8f646bbd839e6/jetified-masked-edittext-1.0.4/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1bbbf708b39b3e63a4b8f646bbd839e6/jetified-masked-edittext-1.0.4/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1300c0a53d83a04d274d9ee9a75f1039/jetified-masked-edittext-1.0.4/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1300c0a53d83a04d274d9ee9a75f1039/jetified-masked-edittext-1.0.4/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1300c0a53d83a04d274d9ee9a75f1039/jetified-masked-edittext-1.0.4/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

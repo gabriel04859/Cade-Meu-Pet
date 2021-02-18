@@ -51,7 +51,7 @@ class FeedAdapter(private val onPostClickListener : OnPostClickListener) : Recyc
                     holder.textViewAddressItemFeed.text = it.street
                 }
                 post.animal?.let {
-                    Picasso.with(context).load(it.imageAnimal).into(holder.imageViewAnimalItemFeed)
+                    Picasso.with(context).load(it.images?.first()).into(holder.imageViewAnimalItemFeed)
                     holder.textNameAnimalItemFeed.text = it.name
                 }
             }

@@ -31,7 +31,7 @@ class ProfileAdapter(private val onPostClickListener: OnPostProfileClickListener
     override fun onBindViewHolder(holder: ProfileViewHolder, position: Int) {
         val post = postList[position]
         holder.itemView.apply {
-            Picasso.with(context).load(post.animal?.imageAnimal).into(holder.imageViewPost)
+            Picasso.with(context).load(post.animal?.images?.first()).into(holder.imageViewPost)
         }
         holder.itemView.setOnClickListener {
             onPostClickListener.onPostClick(post)

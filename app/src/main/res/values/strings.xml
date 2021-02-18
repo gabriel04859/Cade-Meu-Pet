@@ -68,4 +68,5 @@
     <string name="login_failed">"Login failed"</string>
     <string name="clique_no_mapa">Clique no mapa</string>
     <string name="ultimas_mensagens">Últimas menssagens</string>
+    <string name="precisa_permissão_funcionar">O aplicativo necessita da sua permissão para funcionar</string>
 </resources>

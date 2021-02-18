@@ -1,10 +1,12 @@
 package com.gabriel.ribeiro.cademeupet.ui.fragments
 
+import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.os.Build
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
@@ -22,15 +24,18 @@ import com.gabriel.ribeiro.cademeupet.ui.activitys.PrincipalActivity
 import com.gabriel.ribeiro.cademeupet.ui.viewmodel.MainViewModel
 import com.gabriel.ribeiro.cademeupet.utils.*
 import com.gabriel.ribeiro.cademeupet.utils.Constants.Companion.POST_KEY
+import com.gabriel.ribeiro.cademeupet.utils.Constants.Companion.REQUEST_CODE_LOCATION_PERMISSION
 import com.gabriel.ribeiro.cademeupet.utils.Constants.Companion.TAG
 
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
+import pub.devrel.easypermissions.AppSettingsDialog
+import pub.devrel.easypermissions.EasyPermissions
 import kotlin.math.log
 
-class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener, OnGetCurrentLatLng {
+class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener, OnGetCurrentLatLng, EasyPermissions.PermissionCallbacks {
     private lateinit var mMap : GoogleMap
     private lateinit var mainViewModel: MainViewModel
     private val location = Location(this)
@@ -44,18 +49,19 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnInfoWindowClick
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requestPermission()
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(this)
         mainViewModel = (activity as PrincipalActivity).mainViewModel
 
     }
 
-
     override fun onMapReady(googleMap: GoogleMap?) {
 
         if (googleMap != null) {
             mMap = googleMap
             getAllPostsMarkers(mMap)
+
         }
 
         location.getCurrentLocation(mMap,requireContext())
@@ -145,14 +151,52 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnInfoWindowClick
         for(post in postList){
             Log.d(TAG, "onGetCurrentLatLng: ${post.address}")
             android.location.Location.distanceBetween(latLng.latitude, latLng.longitude, post.address?.latitude!!,
-                    post.address?.longitude!!,results)
-
+                    post.address.longitude!!,results)
         }
         for (result in results){
             Log.d(TAG, "onGetCurrentLatLng: Distancia é ${result}")
             Log.d(TAG, "onGetCurrentLatLng: Distancia em km ${result / 1000}")
         }
 
+    }
+
+    private fun requestPermission(){
+        if(LocationPermission.hasLocationPermission(requireContext())){
+            return }
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q){
+            EasyPermissions.requestPermissions(this,
+                getString(R.string.precisa_permissão_funcionar),
+                REQUEST_CODE_LOCATION_PERMISSION,
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION)
+        }else{
+            EasyPermissions.requestPermissions(this,
+            getString(R.string.precisa_permissão_funcionar),
+                REQUEST_CODE_LOCATION_PERMISSION,
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_BACKGROUND_LOCATION
+            )
+        }
+    }
+
+    override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
+        findNavController().navigate(R.id.action_mapsFragment_self)
+    }
+
+    override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
+        if(EasyPermissions.somePermissionPermanentlyDenied(this, perms)){
+            AppSettingsDialog.Builder(this).build().show()
+        }else{
+            requestPermission()
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults,this)
+        findNavController().navigate(R.id.action_mapsFragment_self)
     }
 
 
