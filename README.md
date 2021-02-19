@@ -15,3 +15,4 @@ Este projeto foi usado no meu TCC para graduação  de Bacharelado em Sistemas d
 - Firebase
 - Google Maps API
 - ViewBinding
+- Navigation Component
