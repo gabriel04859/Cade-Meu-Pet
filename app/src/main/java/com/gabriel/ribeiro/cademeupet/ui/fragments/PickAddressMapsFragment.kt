@@ -21,6 +21,8 @@ import com.gabriel.ribeiro.cademeupet.model.Address
 import com.gabriel.ribeiro.cademeupet.utils.Constants
 import com.gabriel.ribeiro.cademeupet.utils.CustomToast
 import com.gabriel.ribeiro.cademeupet.utils.Location
+import com.gabriel.ribeiro.cademeupet.utils.OnGetCurrentLatLng
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
@@ -54,9 +56,8 @@ class PickAddressMapsFragment : Fragment(), OnMapReadyCallback {
 
         if (googleMap != null) {
             mMap = googleMap
+            activity?.let { location.getCurrentLocation(mMap, it.applicationContext) }
         }
-
-        location.getCurrentLocation(mMap,requireContext())
 
         if (ActivityCompat.checkSelfPermission(requireContext(), android.Manifest.permission.ACCESS_FINE_LOCATION)
             != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
@@ -112,10 +113,7 @@ class PickAddressMapsFragment : Fragment(), OnMapReadyCallback {
 
         }catch (e : IOException){
             Log.i(Constants.TAG, "confirmAddressDialog: Erro ao obter o endereco: ${e.message} ")
-            //textViewAddress.text = activity?.getString(R.string.ops_tente_novamente)
-            activity?.let {
-                CustomToast.showToast(it.applicationContext,getString(R.string.ops_tente_novamente))
-            }
+
             dialog.cancel()
             buttonConfirm.isEnabled = false
         }

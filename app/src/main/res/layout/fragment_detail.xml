@@ -18,17 +18,24 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
-        <com.google.android.material.tabs.TabLayout
-            app:tabGravity="center"
-            android:id="@+id/tabLayoutDetail"
-            app:tabBackground="@drawable/selector_indicator"
-            android:layout_width="match_parent"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewNameAnimalDetail"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:fontFamily="@font/quicksand_medium"
+            android:textSize="18sp"
+            android:layout_margin="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/circleIndicator"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Doguinho" />
+        <me.relex.circleindicator.CircleIndicator3
+            android:id="@+id/circleIndicator"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
             app:layout_constraintBottom_toTopOf="@+id/linearLayoutCompat2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:tabIndicatorHeight="0dp" />
-
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <ProgressBar
             android:id="@+id/progressBarDetails"

@@ -63,16 +63,16 @@ class HomeFragment : Fragment(R.layout.fragment_home), View.OnClickListener, Fee
         mainViewModel = (activity as PrincipalActivity).mainViewModel
 
 
-        mainViewModel.postList.observe(viewLifecycleOwner, Observer {resource ->
-            when(resource){
+        mainViewModel.postList.observe(viewLifecycleOwner, Observer { resource ->
+            when (resource) {
                 is Resource.Loading -> {
-                    Log.i(TAG,"Loading...")
-                    customDialog.showLoadingDialog()}
-                is Resource.Failure -> {
-                    Log.i(TAG,"Erro ao obter os posts: ${resource.exception}")
+                    Log.d(TAG, "onViewCreated: loading...")
                 }
-                is Resource.Success ->{
-                    Log.i(TAG,"Success...")
+                is Resource.Failure -> {
+                    Log.i(TAG, "Erro ao obter os posts: ${resource.exception}")
+                }
+                is Resource.Success -> {
+                    Log.d(TAG, "onViewCreated: Seccess")
                     setDataToAdapter(resource.data)
                 }
 

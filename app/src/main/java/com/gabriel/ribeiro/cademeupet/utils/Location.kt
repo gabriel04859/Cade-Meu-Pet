@@ -13,7 +13,7 @@ import com.google.android.gms.maps.model.LatLng
 import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
 
-class Location(private val onGetCurrentLatLng: OnGetCurrentLatLng? = null) {
+class Location() {
 
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     fun getCurrentLocation(mMap : GoogleMap, context : Context) = CoroutineScope(Dispatchers.IO).launch{
@@ -22,12 +22,9 @@ class Location(private val onGetCurrentLatLng: OnGetCurrentLatLng? = null) {
             val location= fusedLocationProviderClient.lastLocation
 
             val currentLocation = LatLng(location.await().latitude,location.await().longitude)
-            delay(2000L)
-            onGetCurrentLatLng?.onGetCurrentLatLng(currentLocation)
-
             withContext(Dispatchers.Main){
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation,18F))
-                Log.d(TAG, "getCurrentLocation: ${currentLocation.longitude}")
+                Log.d(TAG, "getCurrentLocation: Success")
             }
         }catch (e : SecurityException){
             Log.i(TAG, "getCurrentLocation: Erro ao pegar localização atual: ${e.message} ")

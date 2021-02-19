@@ -56,7 +56,7 @@ class PrincipalActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when(destination.id){
-                R.id.detailFragment, R.id.mapsFragment -> supportActionBar?.hide()
+                R.id.mapsFragment -> supportActionBar?.hide()
                 R.id.registerFragment -> {binding.bottomNavigationViewMain.visibility = View.GONE
                 supportActionBar?.show()}
                 R.id.loginFragment -> {supportActionBar?.hide()

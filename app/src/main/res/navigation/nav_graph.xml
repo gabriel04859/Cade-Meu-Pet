@@ -138,7 +138,7 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.gabriel.ribeiro.cademeupet.ui.fragments.DetailFragment"
-        android:label="fragment_detail"
+        android:label="Detalhes"
         tools:layout="@layout/fragment_detail" >
         <action
             android:id="@+id/action_detailFragment_to_chatFragment"
@@ -153,7 +153,15 @@
         android:id="@+id/messagesFragment"
         android:name="com.gabriel.ribeiro.cademeupet.ui.fragments.MessagesFragment"
         android:label="@string/ultimas_mensagens"
-        tools:layout="@layout/fragment_messages" />
+        tools:layout="@layout/fragment_messages" >
+        <action
+            android:id="@+id/action_messagesFragment_to_chatFragment"
+            app:destination="@id/chatFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
+    </fragment>
     <fragment
         android:id="@+id/chatFragment"
         android:name="com.gabriel.ribeiro.cademeupet.ui.fragments.ChatFragment"

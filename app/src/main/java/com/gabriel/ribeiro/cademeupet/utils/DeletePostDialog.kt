@@ -29,13 +29,14 @@ class DeletePostDialog(private val activity : Activity) {
         val buttonConfirmDeleteDialog = view.findViewById<Button>(R.id.buttonConfirmDeleteDialog)
 
         textViewNoDeleteDialog.setOnClickListener {
-            dialog.dismiss()
+            dialog.cancel()
         }
 
         buttonConfirmDeleteDialog.setOnClickListener {
             CoroutineScope(Dispatchers.Main).launch {
                 if (deletePost(postId) == null) {
-                    dialog.dismiss()
+                    dialog.cancel()
+
 
                     Log.i(Constants.TAG, "showDeleteDialog: ${deletePost(postId)}")
                 }
@@ -51,10 +52,6 @@ class DeletePostDialog(private val activity : Activity) {
                     .getFirebaseFirestore()
                     .collection(POST_COLLECTION)
                     .document(postId).delete().await()
-            /*val intent = Intent(activity.applicationContext, MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            activity.startActivity(intent)*/
-
 
         } catch (e: Exception) {
             Log.i(Constants.TAG, "deletePost: Erro ao deleter post: ${e.message}")

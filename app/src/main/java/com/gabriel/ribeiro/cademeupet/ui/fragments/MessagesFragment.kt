@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.gabriel.ribeiro.cademeupet.R
 import com.gabriel.ribeiro.cademeupet.databinding.FragmentMessagesBinding
@@ -69,9 +70,10 @@ class MessagesFragment : Fragment(R.layout.fragment_messages), LastMessageAdapte
     }
 
     override fun onContactClick(contact: Contact) {
-        /*val intent  = Intent(requireContext(), ChatActivity::class.java)
-        intent.putExtra("uidTo",contact.uid)
-        startActivity(intent)*/
+        val uidToBundle = Bundle().apply {
+            putString("uidTo",contact.uid)
+        }
+        findNavController().navigate(R.id.action_messagesFragment_to_chatFragment, uidToBundle)
     }
 
 }

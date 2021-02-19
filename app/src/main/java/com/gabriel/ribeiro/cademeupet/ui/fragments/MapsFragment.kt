@@ -26,6 +26,7 @@ import com.gabriel.ribeiro.cademeupet.utils.*
 import com.gabriel.ribeiro.cademeupet.utils.Constants.Companion.POST_KEY
 import com.gabriel.ribeiro.cademeupet.utils.Constants.Companion.REQUEST_CODE_LOCATION_PERMISSION
 import com.gabriel.ribeiro.cademeupet.utils.Constants.Companion.TAG
+import com.google.android.gms.maps.CameraUpdateFactory
 
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -38,7 +39,7 @@ import kotlin.math.log
 class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener, OnGetCurrentLatLng, EasyPermissions.PermissionCallbacks {
     private lateinit var mMap : GoogleMap
     private lateinit var mainViewModel: MainViewModel
-    private val location = Location(this)
+    private val location = Location()
 
     lateinit var postList : MutableList<Post>
     override fun onCreateView(inflater: LayoutInflater,
@@ -62,13 +63,14 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnInfoWindowClick
             mMap = googleMap
             getAllPostsMarkers(mMap)
 
+            activity?.let { location.getCurrentLocation(mMap, it.applicationContext) }
         }
 
-        location.getCurrentLocation(mMap,requireContext())
+
       
-        if (ActivityCompat.checkSelfPermission(requireContext(), android.Manifest.permission.ACCESS_FINE_LOCATION)
+        if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                        requireContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+                        requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
             return
         }
         mMap.isMyLocationEnabled = true
