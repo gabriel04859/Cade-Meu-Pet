@@ -10,6 +10,7 @@ Este projeto foi usado no meu TCC para graduação  de Bacharelado em Sistemas d
 
 - Kotlin
 - Arquitetura MVVM
+- Dagger Hilt
 - Coroutines
 - Firebase
 - Google Maps API
