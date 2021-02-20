@@ -159,7 +159,7 @@ class NewPostFragment : Fragment(R.layout.fragment_new_post), View.OnClickListen
             }
 
             val animal = Animal(name,getAnimalType()!!,maleOrFemale,size,donateOrLostOrFinder)
-            Log.d(Constants.TAG, "onViewCreated: Animal: $animal")
+            Log.d(TAG, "onViewCreated: Animal: $animal")
             newPostViewModel.createPost(imageUriList,animal,address,date,comment)
             
         }

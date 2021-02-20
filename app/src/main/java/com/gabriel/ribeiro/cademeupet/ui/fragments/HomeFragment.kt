@@ -38,9 +38,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), View.OnClickListener, Fee
     private val feedAdapter by lazy {
         FeedAdapter(this)
     }
-    private val customDialog by lazy{
-        CustomDialog(activity)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,6 +51,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), View.OnClickListener, Fee
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val customDialog = activity?.let { CustomDialog(it) }
 
         binding.floatingActionButtonDog.setOnClickListener(this)
         binding.floatingActionButtonCat.setOnClickListener(this)
@@ -67,13 +65,16 @@ class HomeFragment : Fragment(R.layout.fragment_home), View.OnClickListener, Fee
             when (resource) {
                 is Resource.Loading -> {
                     Log.d(TAG, "onViewCreated: loading...")
+                    customDialog?.showDialogLoading()
                 }
                 is Resource.Failure -> {
                     Log.i(TAG, "Erro ao obter os posts: ${resource.exception}")
+                    customDialog?.showDialogLoading(false)
                 }
                 is Resource.Success -> {
                     Log.d(TAG, "onViewCreated: Seccess")
                     setDataToAdapter(resource.data)
+                    customDialog?.showDialogLoading(false)
                 }
 
             }

@@ -11,8 +11,11 @@ import javax.inject.Inject
 @HiltViewModel
 @Suppress("UNCHECKED_CAST")
 class MainViewModel @Inject constructor(private val repository : MainRepository) : ViewModel() {
-    val postList : LiveData<Resource<MutableList<Post>>>  get() =  repository.posts
+
+
+    val postList : LiveData<Resource<MutableList<Post>>> get() = repository.posts
     val postsOfCurrentUser : LiveData<Resource<MutableList<Post>>> get() =   repository.postsCurrentUser
     val contacts :LiveData<Resource<MutableList<Contact>>> get()= repository.contactList
+
 
 }

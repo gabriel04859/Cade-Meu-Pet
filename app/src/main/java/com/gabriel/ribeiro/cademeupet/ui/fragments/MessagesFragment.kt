@@ -16,6 +16,7 @@ import com.gabriel.ribeiro.cademeupet.ui.activitys.PrincipalActivity
 import com.gabriel.ribeiro.cademeupet.ui.adatper.LastMessageAdapter
 import com.gabriel.ribeiro.cademeupet.ui.viewmodel.MainViewModel
 import com.gabriel.ribeiro.cademeupet.utils.Constants
+import com.gabriel.ribeiro.cademeupet.utils.Constants.Companion.TAG
 import com.gabriel.ribeiro.cademeupet.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -46,18 +47,20 @@ class MessagesFragment : Fragment(R.layout.fragment_messages), LastMessageAdapte
 
         mainViewModel = (activity as PrincipalActivity).mainViewModel
         mainViewModel.contacts.observe(viewLifecycleOwner, Observer { resource ->
-            when(resource){
-                is Resource.Loading -> {}
-                is Resource.Success ->{
-                    Log.i(Constants.TAG,"Last Messages: ${resource.data}")
-                    if (resource.data?.isEmpty() == true){
+            when (resource) {
+                is Resource.Loading -> {
+                    Log.d(TAG, "onViewCreated: Loaging contacts")
+                }
+                is Resource.Success -> {
+                    Log.i(TAG, "Last Messages: ${resource.data}")
+                    if (resource.data?.isEmpty() == true) {
                         binding.textViewDontHaveMessages.visibility = View.VISIBLE
                     }
                     lastMessageAdapter.differ.submitList(resource.data)
                     lastMessageAdapter.notifyDataSetChanged()
                 }
                 is Resource.Failure -> {
-                    Log.i(Constants.TAG,"Erro ao obter contatos: ${resource.exception}")
+                    Log.i(TAG, "Erro ao obter contatos: ${resource.exception}")
                 }
             }
         })

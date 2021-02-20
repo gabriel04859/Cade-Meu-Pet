@@ -11,6 +11,7 @@ import com.gabriel.ribeiro.cademeupet.utils.Constants
 import com.gabriel.ribeiro.cademeupet.utils.Resource
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.FirebaseUser
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.tasks.await
 import java.util.*
 import javax.inject.Inject
@@ -36,6 +37,7 @@ class LoginAndRegisterRepositoryImplemented @Inject constructor(private val fire
         }catch (e : FirebaseAuthException){
             _userAuthenticate.value = Resource.Failure(e)
         }
+        delay(50L)
         return _userAuthenticate
 
     }
@@ -43,11 +45,12 @@ class LoginAndRegisterRepositoryImplemented @Inject constructor(private val fire
     override suspend fun createUser(name: String, lastName: String, email: String, password: String,
                                     phone: String, imageUri: Uri): LiveData<Resource<FirebaseUser>> {
 
-        _createUser.value = Resource.Loading()
-        val imageUrl = reference.putFile(imageUri).await().storage.downloadUrl.await().toString()
-
-        Log.i(Constants.TAG, "Image Url: $imageUrl")
         try {
+
+            _createUser.value = Resource.Loading()
+            val imageUrl = reference.putFile(imageUri).await().storage.downloadUrl.await().toString()
+
+            Log.i(Constants.TAG, "Image Url: $imageUrl")
 
             auth.createUserWithEmailAndPassword(email, password).await()
             val user = User(auth.uid, name,lastName,email, password, phone, imageUrl)

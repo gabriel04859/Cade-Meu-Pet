@@ -27,7 +27,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     private var _binding : FragmentDetailBinding? = null
     private val binding : FragmentDetailBinding get()= _binding!!
 
-    private val oberservePost = MutableLiveData<Post>()
+    private val oberservPost = MutableLiveData<Post>()
 
     private lateinit var post : Post
     private lateinit var uidTo : String
@@ -65,14 +65,6 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     private fun setValuesToWidgets(post: Post) {
         binding.progressBarDetails.visibility = View.VISIBLE
         post.apply {
-            oberservePost.observe(viewLifecycleOwner, Observer {
-
-                Log.d(TAG, "setValuesToWidgets: ENTROU")
-                if (it.idPost == null) {
-                    Log.d(TAG, "setValuesToWidgets: Post deletadp")
-                }
-            })
-
             binding.textViewNameAnimalDetail.text = animal?.name
             binding.textViewSexDetail.text = "Sexo: ${animal?.sex}"
             binding.textViewSizeDetail.text = "Tamanho: ${animal?.size}"

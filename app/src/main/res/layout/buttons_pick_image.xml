@@ -17,7 +17,8 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonChoiceAnimalImage01"
         android:layout_margin="5dp"
-        android:background="@drawable/bg_button_pick_image"
+
+        android:background="@drawable/ic_pick_image"
         android:text="@string/clique_aqui"
         android:textColor="@color/white"
         android:layout_width="match_parent"
@@ -75,7 +76,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonChoiceAnimalImage02"
-            android:background="@drawable/bg_button_pick_image"
+            android:background="@drawable/ic_pick_image"
             android:text="@string/clique_aqui"
             android:textColor="@color/white"
             android:layout_width="match_parent"
@@ -86,7 +87,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonChoiceAnimalImage03"
-            android:background="@drawable/bg_button_pick_image"
+            android:background="@drawable/ic_pick_image"
             android:text="@string/clique_aqui"
             android:textColor="@color/white"
             android:layout_width="match_parent"
@@ -97,7 +98,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonChoiceAnimalImage04"
-            android:background="@drawable/bg_button_pick_image"
+            android:background="@drawable/ic_pick_image"
             android:text="@string/clique_aqui"
             android:textColor="@color/white"
             android:layout_width="match_parent"

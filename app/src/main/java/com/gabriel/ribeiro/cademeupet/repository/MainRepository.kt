@@ -9,6 +9,7 @@ import com.gabriel.ribeiro.cademeupet.model.Post
 import com.gabriel.ribeiro.cademeupet.utils.Constants
 import com.gabriel.ribeiro.cademeupet.utils.Constants.Companion.CONTACTS
 import com.gabriel.ribeiro.cademeupet.utils.Constants.Companion.LAST_MESSAGES
+import com.gabriel.ribeiro.cademeupet.utils.Constants.Companion.POST_COLLECTION
 import com.gabriel.ribeiro.cademeupet.utils.Constants.Companion.TAG
 import com.gabriel.ribeiro.cademeupet.utils.Resource
 import kotlinx.coroutines.CoroutineScope
@@ -22,23 +23,42 @@ class MainRepository @Inject constructor(private val firebaseInstance: FirebaseI
     val contactList : MutableLiveData<Resource<MutableList<Contact>>> = MutableLiveData()
     val postsCurrentUser : MutableLiveData<Resource<MutableList<Post>>> = MutableLiveData()
     init {
-        getAllPosts()
         gePostsOfCurrentUser()
         getLastMessages()
+        getPostList()
     }
-    private fun getAllPosts() {
-        firebaseInstance.getFirebaseFirestore()
-                .collection(Constants.POST_COLLECTION)
+
+    private fun getPostList(){
+        posts.postValue(Resource.Loading())
+        firebaseInstance.getFirebaseFirestore().collection(POST_COLLECTION)
                 .addSnapshotListener { value, error ->
-                    posts.postValue(Resource.Loading())
                     if (error != null){
-                        posts.value = Resource.Failure(error)
+                        posts.postValue(Resource.Failure(error))
                         return@addSnapshotListener
                     }
-                    value?.let {
-                        posts.postValue(Resource.Success(it.toObjects(Post::class.java)))
+                    value?.let { posts.postValue(Resource.Success(it.toObjects(Post::class.java)))
                     }
                 }
+
+    }
+
+    private fun getLastMessages() {
+        contactList.postValue(Resource.Loading())
+        firebaseInstance.getFirebaseAuth().currentUser?.let { firebaseUser ->
+            firebaseInstance.getFirebaseFirestore().collection(LAST_MESSAGES)
+                    .document(firebaseUser.uid).collection(CONTACTS)
+                    .addSnapshotListener { value, error ->
+                        if (error != null){
+                            contactList.postValue(Resource.Failure(error))
+                            return@addSnapshotListener
+                        }
+                        value?.let {
+                            contactList.postValue(Resource.Success(it.toObjects(Contact::class.java)))
+                        }
+
+                    }
+        }
+
     }
 
     private fun gePostsOfCurrentUser() {
@@ -58,22 +78,5 @@ class MainRepository @Inject constructor(private val firebaseInstance: FirebaseI
             }
     }
 
-     private fun getLastMessages() {
-         contactList.postValue(Resource.Loading())
-         firebaseInstance.getFirebaseAuth().currentUser?.let { firebaseUser ->
-             firebaseInstance.getFirebaseFirestore().collection(LAST_MESSAGES)
-                            .document(firebaseUser.uid).collection(CONTACTS)
-                 .addSnapshotListener { value, error ->
-                     if (error != null){
-                         contactList.postValue(Resource.Failure(error))
-                         return@addSnapshotListener
-                     }
-                     value?.let {
-                         contactList.postValue(Resource.Success(it.toObjects(Contact::class.java)))
-                     }
-
-                     }
-                 }
-
-                }
+    
 }

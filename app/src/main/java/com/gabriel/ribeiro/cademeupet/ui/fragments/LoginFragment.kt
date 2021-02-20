@@ -75,7 +75,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 is Resource.Failure -> {
                     Log.i(Constants.TAG, "onCreate: Erro ao logar: ${it.exception?.message}")
                     mainActivity.dismissProgressBar()
-                    CustomDialog(activity).showLoadingDialog(false)
+
                     getExceptionsSignUser(it.exception)
                 }
 
