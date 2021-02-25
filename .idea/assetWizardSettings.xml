@@ -319,7 +319,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/message/baseline_message_24.xml" />
+                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/edit/baseline_edit_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -331,8 +331,8 @@
                           <map>
                             <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="ffffff" />
-                            <entry key="outputName" value="ic_pick_image" />
-                            <entry key="sourceFile" value="C:\Users\Henrique\Downloads\ic_pick_image.svg" />
+                            <entry key="outputName" value="ic_loading" />
+                            <entry key="sourceFile" value="C:\Users\Henrique\Downloads\loading.svg" />
                           </map>
                         </option>
                       </PersistentState>

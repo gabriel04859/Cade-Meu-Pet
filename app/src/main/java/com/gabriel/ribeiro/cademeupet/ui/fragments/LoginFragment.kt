@@ -8,16 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.gabriel.ribeiro.cademeupet.R
 import com.gabriel.ribeiro.cademeupet.data.FirebaseInstances
 import com.gabriel.ribeiro.cademeupet.databinding.FragmentLoginBinding
-import com.gabriel.ribeiro.cademeupet.repository.LoginAndRegisterRepositoryImplemented
 import com.gabriel.ribeiro.cademeupet.ui.activitys.PrincipalActivity
 import com.gabriel.ribeiro.cademeupet.ui.viewmodel.LoginAndRegisterViewModel
 import com.gabriel.ribeiro.cademeupet.utils.Constants
-import com.gabriel.ribeiro.cademeupet.utils.CustomDialog
 import com.gabriel.ribeiro.cademeupet.utils.CustomToast
 import com.gabriel.ribeiro.cademeupet.utils.Resource
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException

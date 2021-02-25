@@ -39,6 +39,7 @@
         android:id="@+id/recyclerViewChat"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        tools:listitem="@layout/item_last_messages"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/buttonSendMessage"
         app:layout_constraintEnd_toEndOf="parent"

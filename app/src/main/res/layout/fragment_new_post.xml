@@ -54,6 +54,7 @@
         <include
             android:id="@+id/includeButtonsPickImage"
             layout="@layout/buttons_pick_image" />
+
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/linearLayout3"
             android:layout_width="match_parent"
@@ -125,21 +126,14 @@
                 android:drawablePadding="10dp"
                 android:textSize="18sp" />
 
-            <com.github.pinball83.maskededittext.MaskedEditText
-                android:id="@+id/editTextDataNP"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewDataNP"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:background="@drawable/bg_edit_login"
-                android:fontFamily="@font/quicksand_medium"
                 android:drawableStart="@drawable/ic_date"
                 android:drawablePadding="10dp"
-                android:ems="10"
-                android:hint="@string/date"
-                android:textColor="@color/black"
-                android:inputType="date"
-                app:mask="**/**/****"
-                app:notMaskedSymbol="*"/>
+                android:hint="Data"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textViewSize"

@@ -1,5 +1,6 @@
 package com.gabriel.ribeiro.cademeupet.ui.fragments
 
+import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -9,7 +10,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.DatePicker
 import android.widget.SeekBar
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -30,6 +33,10 @@ import com.gabriel.ribeiro.cademeupet.utils.CustomToast
 import com.gabriel.ribeiro.cademeupet.utils.OpenGalery
 import com.gabriel.ribeiro.cademeupet.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
+import org.w3c.dom.Comment
+import java.text.DateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
 class NewPostFragment : Fragment(R.layout.fragment_new_post), View.OnClickListener {
@@ -85,6 +92,20 @@ class NewPostFragment : Fragment(R.layout.fragment_new_post), View.OnClickListen
         }
 
         binding.textViewAddressNP.setOnClickListener {
+            showDialogDate()
+        }
+
+        binding.textViewDataNP.setOnClickListener {
+            val calender = Calendar.getInstance()
+            val day = calender.get(Calendar.DAY_OF_MONTH)
+            val month = calender.get(Calendar.MONTH)
+            val year = calender.get(Calendar.YEAR)
+
+            val dataSetListener = DatePickerDialog(requireContext(), { view, Year, monthOfYear, dayOfMonth ->
+                val date = "${dayOfMonth} / ${month} / ${Year}"
+                binding.textViewDataNP.text = date
+            }, year, month, day)
+            dataSetListener.show()
 
         }
 
@@ -130,40 +151,59 @@ class NewPostFragment : Fragment(R.layout.fragment_new_post), View.OnClickListen
 
         binding.buttonPost.setOnClickListener {
             val name = binding.editTextNameNP.text.toString().trim()
-            val date = binding.editTextDataNP.text.toString().trim()
+            val date = binding.textViewDataNP.text.toString().trim()
             val comment = binding.editTextCommentNP.text.toString().trim()
 
-            if (name.isEmpty() && date.isEmpty() && comment.isEmpty()){
-                CustomToast.showToast(requireContext(),getString(R.string.preencha_todos_os_campos))
-                return@setOnClickListener
-            }
-
-            if (maleOrFemale == ""){
-                CustomToast.showToast(requireContext(),getString(R.string.indique_o_sexo))
-                return@setOnClickListener
-            }
-            if (size == "" && size == getString(R.string.indique_o_porte_abaixo)){
-                CustomToast.showToast(requireContext(),getString(R.string.indique_o_porte))
-                return@setOnClickListener
-            }
-
-            if (donateOrLostOrFinder == ""){
-                CustomToast.showToast(requireContext(),getString(R.string.indique_a_situacao_do_animal))
-                return@setOnClickListener
-            }
-
-            addImageUriToList()
-            if (imageUriList.isEmpty()){
-                CustomToast.showToast(requireContext(),getString(R.string.selecione_uma_foto))
-                return@setOnClickListener
-            }
-
-            val animal = Animal(name,getAnimalType()!!,maleOrFemale,size,donateOrLostOrFinder)
-            Log.d(TAG, "onViewCreated: Animal: $animal")
-            newPostViewModel.createPost(imageUriList,animal,address,date,comment)
+            getValuesOfInputs(name, date, comment)
             
         }
 
+    }
+
+    private fun getValuesOfInputs(name : String,  date : String, comment: String) : Boolean {
+        if (name.isEmpty() || date.isEmpty() || comment.isEmpty()){
+            CustomToast.showToast(requireContext(),getString(R.string.preencha_todos_os_campos))
+            return false
+        }
+
+        if (maleOrFemale == ""){
+            CustomToast.showToast(requireContext(),getString(R.string.indique_o_sexo))
+            return false
+        }
+        if (size == "" && size == getString(R.string.indique_o_porte_abaixo)){
+            CustomToast.showToast(requireContext(),getString(R.string.indique_o_porte))
+            return false
+        }
+
+        if (donateOrLostOrFinder == ""){
+            CustomToast.showToast(requireContext(),getString(R.string.indique_a_situacao_do_animal))
+            return false
+        }
+
+        addImageUriToList()
+        if (imageUriList.isEmpty()){
+            CustomToast.showToast(requireContext(),getString(R.string.selecione_uma_foto))
+            return false
+        }
+
+        val animal = Animal(name,getAnimalType()!!,maleOrFemale,size,donateOrLostOrFinder)
+        Log.d(TAG, "onViewCreated: Animal: $animal")
+        newPostViewModel.createPost(imageUriList,animal,address,date,comment)
+        return true
+
+    }
+
+    private fun showDialogDate() {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val dialogDatePicker = DatePickerDialog(requireContext(), DatePickerDialog.OnDateSetListener { view, Year, Month, dayOfMonth ->
+            CustomToast.showToast(requireContext(), "${dayOfMonth} / ${Month} / ${Year}")
+
+        }, year, month, day)
+        dialogDatePicker.show()
     }
 
     private fun addImageUriToList() {

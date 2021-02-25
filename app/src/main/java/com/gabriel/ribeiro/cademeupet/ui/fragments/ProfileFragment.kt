@@ -2,10 +2,8 @@ package com.gabriel.ribeiro.cademeupet.ui.fragments
 
 import android.os.Bundle
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -38,6 +36,8 @@ class ProfileFragment : Fragment(R.layout.fragment_profile), ProfileAdapter.OnPo
 
     private val profileAdapter = ProfileAdapter(this)
 
+    private var menu : Menu? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -57,7 +57,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile), ProfileAdapter.OnPo
                 User::class.java)
             withContext(Dispatchers.Main){
                 user?.let{
-                    Picasso.with(requireContext()).load(it.imageProfile).into(binding.imageViewUserPhotoProfile)
+                    Picasso.with(requireContext()).load(it.imageProfile).placeholder(R.drawable.ic_profile).into(binding.imageViewUserPhotoProfile)
                     val completeName = "${it.name} ${it.lastName}"
                     binding.textViewNameProfile.text = completeName
                     binding.textViewEmailProfile.text = it.email

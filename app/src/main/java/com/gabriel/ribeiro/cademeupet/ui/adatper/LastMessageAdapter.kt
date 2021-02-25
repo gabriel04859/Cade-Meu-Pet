@@ -45,7 +45,7 @@ class LastMessageAdapter(private val onContactClickListener : OnContactClickList
     override fun onBindViewHolder(holder: LastMessageViewHolder, position: Int) {
         val contact = differ.currentList[position]
         holder.itemView.apply {
-            Picasso.with(context).load(contact.userPhoto).into(holder.imageViewUserLastMessages)
+            Picasso.with(context).load(contact.userPhoto).placeholder(R.drawable.ic_profile).into(holder.imageViewUserLastMessages)
             holder.textViewNameUserLastMessage.text = contact.name
             holder.textViewTextLastMessage.text = contact.lastMessage
         }
