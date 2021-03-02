@@ -14,4 +14,5 @@ object ModulesProvides {
     @Singleton
     @Provides
     fun providesFirebaseInstances() = FirebaseInstances
+
 }

@@ -8,5 +8,5 @@ import com.gabriel.ribeiro.cademeupet.utils.Resource
 import java.lang.Exception
 
 interface NewPostRepository {
-    suspend fun createPost(imageUriList : ArrayList<Uri>, animal: Animal, address: Address, date: String, comment: String ) : LiveData<Resource<Boolean>>
+    suspend fun createPost(imageUri : Uri, animal: Animal, address: Address, date: String, comment: String ) : LiveData<Resource<Boolean>>
 }

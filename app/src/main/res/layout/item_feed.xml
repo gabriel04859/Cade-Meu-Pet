@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.constraintlayout.utils.widget.ImageFilterView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageViewAnimalItemFeed"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

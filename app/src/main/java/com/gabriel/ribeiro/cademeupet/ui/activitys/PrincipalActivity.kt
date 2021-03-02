@@ -52,6 +52,7 @@ class PrincipalActivity : AppCompatActivity() {
 
         binding.bottomNavigationViewMain.setupWithNavController(navController)
         appBarConfiguration = AppBarConfiguration(navController.graph)
+        binding.bottomNavigationViewMain.setOnNavigationItemReselectedListener { /* NO-OP */ }
         NavigationUI.setupActionBarWithNavController(this,navController)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->

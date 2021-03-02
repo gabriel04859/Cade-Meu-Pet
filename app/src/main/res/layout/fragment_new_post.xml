@@ -24,33 +24,6 @@
             app:layout_constraintStart_toStartOf="parent"
             android:focusable="true" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imageViewAnimalNP"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:scaleType="fitXY"
-            android:visibility="gone"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/buttonChoiceAnimalImageNP"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:textColor="@color/colorWhite"
-            android:background="@color/colorPrimary"
-            android:visibility="gone"
-            android:text="@string/clique_aqui"
-            android:fontFamily="@font/quicksand_medium"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
         <include
             android:id="@+id/includeButtonsPickImage"
             layout="@layout/buttons_pick_image" />
@@ -216,7 +189,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="10dp"
-                android:background="@drawable/bg_button_default"
+                android:background="@drawable/bg_button_selector"
                 android:text="@string/publicar"
                 android:textColor="@color/colorWhite"
                 android:fontFamily="@font/quicksand_medium"

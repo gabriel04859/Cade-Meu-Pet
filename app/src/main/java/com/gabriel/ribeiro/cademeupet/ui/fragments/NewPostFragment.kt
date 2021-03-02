@@ -28,6 +28,7 @@ import com.gabriel.ribeiro.cademeupet.repository.NewPostRepositoryImple
 import com.gabriel.ribeiro.cademeupet.ui.activitys.PrincipalActivity
 import com.gabriel.ribeiro.cademeupet.ui.viewmodel.NewPostViewModel
 import com.gabriel.ribeiro.cademeupet.utils.Constants
+import com.gabriel.ribeiro.cademeupet.utils.Constants.Companion.PICK_IMAGE
 import com.gabriel.ribeiro.cademeupet.utils.Constants.Companion.TAG
 import com.gabriel.ribeiro.cademeupet.utils.CustomToast
 import com.gabriel.ribeiro.cademeupet.utils.OpenGalery
@@ -39,20 +40,15 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
-class NewPostFragment : Fragment(R.layout.fragment_new_post), View.OnClickListener {
+class NewPostFragment : Fragment(R.layout.fragment_new_post) {
     private var _binding : FragmentNewPostBinding? = null
     private val binding : FragmentNewPostBinding get() = _binding!!
 
-    private var imageUri1 : Uri? = null
-    private var imageUri2 : Uri? = null
-    private var imageUri3 : Uri? = null
-    private var imageUri4 : Uri? = null
+    private var imageUri : Uri? = null
 
     private var maleOrFemale = ""
     private var donateOrLostOrFinder = ""
     private var size = ""
-    private var imageUriList = ArrayList<Uri>()
-
     private lateinit var address: Address
 
     private val newPostViewModel: NewPostViewModel by viewModels()
@@ -77,18 +73,12 @@ class NewPostFragment : Fragment(R.layout.fragment_new_post), View.OnClickListen
             val addressString = "${address.street} - ${address.city}"
             binding.textViewAddressNP.text = addressString
 
-            binding.includeButtonsPickImage.buttonChoiceAnimalImage01.setOnClickListener(this)
-            binding.includeButtonsPickImage.buttonChoiceAnimalImage02.setOnClickListener(this)
-            binding.includeButtonsPickImage.buttonChoiceAnimalImage03.setOnClickListener(this)
-            binding.includeButtonsPickImage.buttonChoiceAnimalImage04.setOnClickListener(this)
-
-
         }
 
         observerStatusSavePost()
 
-        binding.buttonChoiceAnimalImageNP.setOnClickListener{
-            startActivityForResult(OpenGalery.openGalery(), Constants.PICK_IMAGE)
+        binding.includeButtonsPickImage.buttonChoiceAnimalImage.setOnClickListener{
+            startActivityForResult(OpenGalery.openGalery(), PICK_IMAGE)
         }
 
         binding.textViewAddressNP.setOnClickListener {
@@ -154,7 +144,12 @@ class NewPostFragment : Fragment(R.layout.fragment_new_post), View.OnClickListen
             val date = binding.textViewDataNP.text.toString().trim()
             val comment = binding.editTextCommentNP.text.toString().trim()
 
-            getValuesOfInputs(name, date, comment)
+            val success = getValuesOfInputs(name, date, comment)
+            if (success){
+                val animal = Animal(name,getAnimalType()!!,maleOrFemale,size,donateOrLostOrFinder)
+                Log.d(TAG, "onViewCreated: Animal: $animal")
+                imageUri?.let { it1 -> newPostViewModel.createPost(it1,animal,address,date,comment) }
+            }
             
         }
 
@@ -180,15 +175,10 @@ class NewPostFragment : Fragment(R.layout.fragment_new_post), View.OnClickListen
             return false
         }
 
-        addImageUriToList()
-        if (imageUriList.isEmpty()){
+        if (imageUri == null){
             CustomToast.showToast(requireContext(),getString(R.string.selecione_uma_foto))
             return false
         }
-
-        val animal = Animal(name,getAnimalType()!!,maleOrFemale,size,donateOrLostOrFinder)
-        Log.d(TAG, "onViewCreated: Animal: $animal")
-        newPostViewModel.createPost(imageUriList,animal,address,date,comment)
         return true
 
     }
@@ -206,23 +196,6 @@ class NewPostFragment : Fragment(R.layout.fragment_new_post), View.OnClickListen
         dialogDatePicker.show()
     }
 
-    private fun addImageUriToList() {
-        if (imageUri1 != null){
-            imageUriList.add(imageUri1!!)
-        }
-        if (imageUri2 != null){
-            imageUriList.add(imageUri2!!)
-        }
-        if (imageUri3 != null){
-            imageUriList.add(imageUri3!!)
-        }
-        if (imageUri4 != null){
-            imageUriList.add(imageUri4!!)
-        }
-        Log.d(TAG, "onViewCreated: IMAGE URI: ${imageUriList.toString()}")
-
-    }
-
     private fun getAnimalType() : String?{
         val sharedPreferences = activity?.getSharedPreferences(Constants.SHARED_ANIMAL_KEY, Context.MODE_PRIVATE)
         return sharedPreferences?.getString(Constants.ANIMAL_KEY,"")
@@ -230,29 +203,10 @@ class NewPostFragment : Fragment(R.layout.fragment_new_post), View.OnClickListen
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(resultCode == AppCompatActivity.RESULT_OK && data?.data != null){
-            when(requestCode){
-                Constants.PIC_IMAGE_01 -> {
-                    imageUri1 = data.data
-                    binding.includeButtonsPickImage.imageViewChoiceAnimalImage01.setImageURI(imageUri1)
-                    binding.includeButtonsPickImage.buttonChoiceAnimalImage01.alpha = 0F
-                }
-                Constants.PIC_IMAGE_02 ->{
-                    imageUri2 = data.data
-                    binding.includeButtonsPickImage.imageViewChoiceAnimalImage02.setImageURI(imageUri2)
-                    binding.includeButtonsPickImage.buttonChoiceAnimalImage02.alpha = 0F
-                }
-                Constants.PIC_IMAGE_03 ->{
-                    imageUri3 = data.data
-                    binding.includeButtonsPickImage.imageViewChoiceAnimalImage03.setImageURI(imageUri3)
-                    binding.includeButtonsPickImage.buttonChoiceAnimalImage03.alpha = 0F
-                }
-                Constants.PIC_IMAGE_04 ->{
-                    imageUri4 = data.data
-                    binding.includeButtonsPickImage.imageViewChoiceAnimalImage04.setImageURI(imageUri4)
-                    binding.includeButtonsPickImage.buttonChoiceAnimalImage04.alpha = 0F
-                }
-            }
+        if(requestCode == PICK_IMAGE && resultCode == AppCompatActivity.RESULT_OK && data?.data != null){
+            imageUri = data.data
+            binding.includeButtonsPickImage.imageViewChoiceAnimalImage.setImageURI(imageUri)
+            binding.includeButtonsPickImage.buttonChoiceAnimalImage.alpha = 0F
         }
     }
 
@@ -261,18 +215,18 @@ class NewPostFragment : Fragment(R.layout.fragment_new_post), View.OnClickListen
             when (it) {
                 is Resource.Loading -> {
                     binding.progressBarNewPost.visibility = View.VISIBLE
-                    Log.i(Constants.TAG, "observerStatusSavePost: Loading...")
+                    Log.i(TAG, "observerStatusSavePost: Loading...")
 
                 }
                 is Resource.Success -> {
                     findNavController().navigate(R.id.action_newPostFragment_to_homeFragment)
-                    Log.i(Constants.TAG, "observerStatusSavePost: Salvo com sucesso")
+                    Log.i(TAG, "observerStatusSavePost: Salvo com sucesso")
                 }
                 is Resource.Failure -> {
                     binding.progressBarNewPost.visibility = View.GONE
                     CustomToast.showToast(requireContext(), getString(R.string.houve_um_erro))
-                    Log.i(Constants.TAG, "Failure: ${it.exception}")
-                    Log.i(Constants.TAG, "observerStatusSavePost: Erro ao salvar post: ${it.exception?.message}")
+                    Log.i(TAG, "Failure: ${it.exception}")
+                    Log.i(TAG, "observerStatusSavePost: Erro ao salvar post: ${it.exception?.message}")
                 }
             }
         })
@@ -282,16 +236,6 @@ class NewPostFragment : Fragment(R.layout.fragment_new_post), View.OnClickListen
     override fun onDestroy() {
         _binding = null
         super.onDestroy()
-    }
-
-    override fun onClick(v: View?) {
-        when(v?.id){
-            R.id.buttonChoiceAnimalImage01 ->  startActivityForResult(OpenGalery.openGalery(), Constants.PIC_IMAGE_01)
-            R.id.buttonChoiceAnimalImage02 -> startActivityForResult(OpenGalery.openGalery(), Constants.PIC_IMAGE_02)
-            R.id.buttonChoiceAnimalImage03 -> startActivityForResult(OpenGalery.openGalery(), Constants.PIC_IMAGE_03)
-            R.id.buttonChoiceAnimalImage04 -> startActivityForResult(OpenGalery.openGalery(), Constants.PIC_IMAGE_04)
-        }
-
     }
 
 }

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.fragments.DetailFragment">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageViewPostDetail"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:background="@color/colorAccent"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearCard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_card_detail"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewNameAnimalDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/quicksand_medium"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                tools:text="Doguinho" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewSizeDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableStart="@drawable/ic_size"
+                android:fontFamily="@font/quicksand_medium"
+                tools:text="Tamanho: Pequeno" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewSexDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:fontFamily="@font/quicksand_medium"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat2"
+                tools:text="Sexo: Macho" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewStatusAndDateDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:fontFamily="@font/quicksand_medium"
+                tools:text="Perdido em 20/20/20" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewAddressDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_location"
+                android:gravity="center"
+                android:padding="8dp"
+                android:textStyle="bold"
+                app:fontFamily="@font/quicksand_medium"
+                tools:text="Rua tal tal tal n 2020" />
+
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/textViewCommentDetail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_comment"
+                        android:fontFamily="@font/quicksand_medium"
+                        android:padding="8dp" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imageViewUserPhotoDetail"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        app:civ_border_color="@color/colorOrange"
+                        app:civ_border_width="1dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat3" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/textViewNameUserDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        tools:text="Nome" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/textViewPhoneDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textSize="12sp"
+                        app:fontFamily="@font/quicksand_medium"
+                        tools:text="92870244" />
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/textViewEmailUserDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textSize="12sp"
+                        app:fontFamily="@font/quicksand_medium"
+                        tools:text="teste@gmail.com" />
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/buttonOpenChat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="22dp"
+                        android:background="?attr/selectableItemBackground"
+                        android:backgroundTint="@color/colorSalmao"
+                        android:src="@drawable/ic_send"
+                        android:visibility="gone" />
+
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/buttonDeletePost"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="22dp"
+                        android:background="?attr/selectableItemBackground"
+                        android:backgroundTint="@color/colorSalmao"
+                        android:src="@drawable/ic_delete"
+                        android:visibility="visible" />
+
+
+                </LinearLayout>
+            </ScrollView>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

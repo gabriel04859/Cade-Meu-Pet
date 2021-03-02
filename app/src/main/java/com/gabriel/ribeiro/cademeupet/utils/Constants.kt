@@ -25,9 +25,5 @@ class Constants {
         const val ERROR_SERVICE_DIALOG = 999
 
         const val PICK_IMAGE = 123
-        const val PIC_IMAGE_01 = 1
-        const val PIC_IMAGE_02 = 2
-        const val PIC_IMAGE_03 = 3
-        const val PIC_IMAGE_04 = 4
     }
 }

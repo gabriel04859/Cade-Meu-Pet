@@ -1,10 +1,12 @@
 package com.gabriel.ribeiro.cademeupet.ui.fragments
 
+import android.Manifest
 import android.app.AlertDialog
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.location.Geocoder
+import android.os.Build
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
@@ -18,24 +20,21 @@ import androidx.core.app.ActivityCompat
 import androidx.navigation.fragment.findNavController
 import com.gabriel.ribeiro.cademeupet.R
 import com.gabriel.ribeiro.cademeupet.model.Address
-import com.gabriel.ribeiro.cademeupet.utils.Constants
-import com.gabriel.ribeiro.cademeupet.utils.CustomToast
-import com.gabriel.ribeiro.cademeupet.utils.Location
-import com.gabriel.ribeiro.cademeupet.utils.OnGetCurrentLatLng
+import com.gabriel.ribeiro.cademeupet.utils.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import pub.devrel.easypermissions.AppSettingsDialog
+import pub.devrel.easypermissions.EasyPermissions
 import java.io.IOException
 import java.util.*
 
-class PickAddressMapsFragment : Fragment(), OnMapReadyCallback {
+class PickAddressMapsFragment : Fragment(), OnMapReadyCallback, EasyPermissions.PermissionCallbacks {
 
     private lateinit var mMap: GoogleMap
     private val location = Location()
-
-
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -50,6 +49,7 @@ class PickAddressMapsFragment : Fragment(), OnMapReadyCallback {
         super.onViewCreated(view, savedInstanceState)
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(this)
+        requestPermission()
     }
 
     override fun onMapReady(googleMap: GoogleMap?) {
@@ -119,5 +119,45 @@ class PickAddressMapsFragment : Fragment(), OnMapReadyCallback {
         }
 
     }
+
+    private fun requestPermission(){
+        if(LocationPermission.hasLocationPermission(requireContext())){
+            return }
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q){
+            EasyPermissions.requestPermissions(this,
+                    getString(R.string.precisa_permissão_funcionar),
+                    Constants.REQUEST_CODE_LOCATION_PERMISSION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                    Manifest.permission.ACCESS_FINE_LOCATION)
+        }else{
+            EasyPermissions.requestPermissions(this,
+                    getString(R.string.precisa_permissão_funcionar),
+                    Constants.REQUEST_CODE_LOCATION_PERMISSION,
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                    Manifest.permission.ACCESS_BACKGROUND_LOCATION
+            )
+        }
+    }
+
+    override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
+
+    }
+
+    override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
+        if(EasyPermissions.somePermissionPermanentlyDenied(this, perms)){
+            AppSettingsDialog.Builder(this).build().show()
+        }else{
+            requestPermission()
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults,this)
+        findNavController().navigate(R.id.action_mapsFragment_self)
+    }
+
 
 }

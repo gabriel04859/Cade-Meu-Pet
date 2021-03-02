@@ -3,6 +3,7 @@ package com.gabriel.ribeiro.cademeupet.repository
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.liveData
 import com.gabriel.ribeiro.cademeupet.data.FirebaseInstances
 import com.gabriel.ribeiro.cademeupet.model.Contact
 import com.gabriel.ribeiro.cademeupet.model.Post
@@ -16,6 +17,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class MainRepository @Inject constructor(private val firebaseInstance: FirebaseInstances)  {
@@ -61,22 +63,21 @@ class MainRepository @Inject constructor(private val firebaseInstance: FirebaseI
 
     }
 
-    private fun gePostsOfCurrentUser() {
+    private fun gePostsOfCurrentUser()  {
         firebaseInstance.getFirebaseFirestore()
-            .collection(Constants.POST_COLLECTION)
-            .whereEqualTo("idUser", firebaseInstance.getFirebaseAuth().currentUser?.uid)
-            .addSnapshotListener { value, error ->
-                posts.value = Resource.Loading()
-                if (error != null){
-                    postsCurrentUser.value = Resource.Failure(error)
-                    return@addSnapshotListener
+                .collection(POST_COLLECTION)
+                .whereEqualTo("idUser", firebaseInstance.getFirebaseAuth().currentUser?.uid)
+                .addSnapshotListener { value, error ->
+                    posts.value = Resource.Loading()
+                    if (error != null){
+                        postsCurrentUser.value = Resource.Failure(error)
+                        return@addSnapshotListener
+                    }
+                    value?.let {
+                        postsCurrentUser.postValue(Resource.Success(it.toObjects(Post::class.java)))
+                        Log.d(TAG, "gePostsOfCurrentUser: ${postsCurrentUser.value}")
+                    }
                 }
-                value?.let {
-                    postsCurrentUser.postValue(Resource.Success(it.toObjects(Post::class.java)))
-                    Log.d(TAG, "gePostsOfCurrentUser: ${postsCurrentUser.value}")
-                }
-            }
     }
 
-    
-}
+    }
