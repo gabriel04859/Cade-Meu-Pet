@@ -32,54 +32,70 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="8dp">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textViewNameAnimalDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="5dp"
                 android:fontFamily="@font/quicksand_medium"
                 android:textColor="@color/black"
                 android:textSize="16sp"
+                android:textStyle="bold"
                 tools:text="Doguinho" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewMoreInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/quicksand_medium"
+                android:text="Mais Informações"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textViewSizeDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:drawableStart="@drawable/ic_size"
                 android:fontFamily="@font/quicksand_medium"
+                android:gravity="center"
+                android:textSize="12sp"
                 tools:text="Tamanho: Pequeno" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textViewSexDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="12sp"
                 app:fontFamily="@font/quicksand_medium"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat2"
                 tools:text="Sexo: Macho" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textViewStatusAndDateDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="12sp"
                 app:fontFamily="@font/quicksand_medium"
                 tools:text="Perdido em 20/20/20" />
 
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textViewAddressDetail"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_location"
+                android:drawablePadding="10dp"
                 android:gravity="center"
-                android:padding="8dp"
+                android:padding="3dp"
+                android:textSize="12sp"
                 android:textStyle="bold"
                 app:fontFamily="@font/quicksand_medium"
                 tools:text="Rua tal tal tal n 2020" />
@@ -89,7 +105,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -97,18 +112,15 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/textViewCommentDetail"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_comment"
-                        android:fontFamily="@font/quicksand_medium"
-                        android:padding="8dp" />
+                        android:fontFamily="@font/quicksand_medium" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/imageViewUserPhotoDetail"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:layout_gravity="center"
-                        android:layout_marginTop="8dp"
                         app:civ_border_color="@color/colorOrange"
                         app:civ_border_width="1dp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -149,7 +161,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="22dp"
+                        android:layout_marginTop="8dp"
                         android:background="?attr/selectableItemBackground"
                         android:backgroundTint="@color/colorSalmao"
                         android:src="@drawable/ic_send"
@@ -161,7 +173,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="22dp"
+                        android:layout_marginTop="8dp"
                         android:background="?attr/selectableItemBackground"
                         android:backgroundTint="@color/colorSalmao"
                         android:src="@drawable/ic_delete"
