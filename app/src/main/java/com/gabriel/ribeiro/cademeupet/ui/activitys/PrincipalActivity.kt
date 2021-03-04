@@ -37,8 +37,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class PrincipalActivity : AppCompatActivity() {
 
-    private var _binding : ActivityPrincipalBinding? = null
-    private val binding : ActivityPrincipalBinding get() = _binding!!
+    private var _binding: ActivityPrincipalBinding? = null
+    private val binding: ActivityPrincipalBinding get() = _binding!!
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     val mainViewModel: MainViewModel by viewModels()
@@ -56,15 +56,19 @@ class PrincipalActivity : AppCompatActivity() {
         binding.bottomNavigationViewMain.setupWithNavController(navController)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         binding.bottomNavigationViewMain.setOnNavigationItemReselectedListener { /* NO-OP */ }
-        NavigationUI.setupActionBarWithNavController(this,navController)
+        NavigationUI.setupActionBarWithNavController(this, navController)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            when(destination.id){
+            when (destination.id) {
                 R.id.mapsFragment -> supportActionBar?.hide()
-                R.id.registerFragment -> {binding.bottomNavigationViewMain.visibility = View.GONE
-                supportActionBar?.show()}
-                R.id.loginFragment -> {supportActionBar?.hide()
-                    binding.bottomNavigationViewMain.visibility = View.GONE}
+                R.id.registerFragment -> {
+                    binding.bottomNavigationViewMain.visibility = View.GONE
+                    supportActionBar?.show()
+                }
+                R.id.loginFragment -> {
+                    supportActionBar?.hide()
+                    binding.bottomNavigationViewMain.visibility = View.GONE
+                }
                 R.id.chatFragment -> supportActionBar?.hide()
                 else -> {
                     binding.bottomNavigationViewMain.visibility = View.VISIBLE
@@ -75,9 +79,9 @@ class PrincipalActivity : AppCompatActivity() {
 
     }
 
-    override fun onSupportNavigateUp(): Boolean = NavigationUI.navigateUp(navController,appBarConfiguration)
+    override fun onSupportNavigateUp(): Boolean = NavigationUI.navigateUp(navController, appBarConfiguration)
 
-    private fun isServiceOk() : Boolean {
+    private fun isServiceOk(): Boolean {
         val googleApiAvailability = GoogleApiAvailability.getInstance()
         val available = googleApiAvailability.isGooglePlayServicesAvailable(this)
         when {
@@ -87,7 +91,7 @@ class PrincipalActivity : AppCompatActivity() {
             }
             googleApiAvailability.isUserResolvableError(available) -> {
                 Log.i(Constants.TAG, "isServiceOk: Erro with service, but can fixed it ")
-                val dialog = googleApiAvailability.getErrorDialog(this,available, Constants.ERROR_SERVICE_DIALOG)
+                val dialog = googleApiAvailability.getErrorDialog(this, available, Constants.ERROR_SERVICE_DIALOG)
                 dialog.show()
 
             }
@@ -99,9 +103,9 @@ class PrincipalActivity : AppCompatActivity() {
 
     }
 
-    private fun isMapEnabled() : Boolean{
+    private fun isMapEnabled(): Boolean {
         val manager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             buildAlertMessageNoGps()
             return false
         }
@@ -120,18 +124,18 @@ class PrincipalActivity : AppCompatActivity() {
         alert.show()
     }
 
-    private fun onGetPermissionLocation(){
-        if (!isAccessLocationGranted()){
+    private fun onGetPermissionLocation() {
+        if (!isAccessLocationGranted()) {
             requestAccessLocationPermission()
-        }else{
+        } else {
 
         }
 
     }
 
-    private fun checkMapServices() : Boolean{
-        if(isServiceOk()){
-            if (isMapEnabled()){
+    private fun checkMapServices(): Boolean {
+        if (isServiceOk()) {
+            if (isMapEnabled()) {
                 return true
             }
 
@@ -141,9 +145,9 @@ class PrincipalActivity : AppCompatActivity() {
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        if (requestCode == Constants.LOCATION_PERMISSION){
-            if (grantResults.firstOrNull() != PackageManager.PERMISSION_GRANTED){
-                CustomToast.showToast(applicationContext,"O aplicativo necessita da " +
+        if (requestCode == Constants.LOCATION_PERMISSION) {
+            if (grantResults.firstOrNull() != PackageManager.PERMISSION_GRANTED) {
+                CustomToast.showToast(applicationContext, "O aplicativo necessita da " +
                         "sua localização para funcionar corretamente")
                 requestAccessLocationPermission()
             }
@@ -162,14 +166,14 @@ class PrincipalActivity : AppCompatActivity() {
 
     private fun isAccessLocationGranted(): Boolean {
         return ContextCompat.checkSelfPermission(
-                this, Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED &&
+                this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
                 ContextCompat.checkSelfPermission(
                         this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        when(requestCode){
+        when (requestCode) {
             Constants.ENABLE_GPS_CODE -> {
                 Log.i(Constants.TAG, "onActivityResult: Ok")
                 onGetPermissionLocation()
@@ -180,15 +184,16 @@ class PrincipalActivity : AppCompatActivity() {
         }
     }
 
-    fun showProgressBar(){
+    fun showProgressBar() {
         binding.progressBar.visibility = View.VISIBLE
         window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
     }
 
-    fun dismissProgressBar(){
+    fun dismissProgressBar() {
         binding.progressBar.visibility = View.GONE
         window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
     }
+
     override fun onDestroy() {
         _binding = null
         super.onDestroy()

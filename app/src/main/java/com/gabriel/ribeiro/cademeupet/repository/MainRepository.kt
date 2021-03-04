@@ -20,29 +20,18 @@ import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class MainRepository @Inject constructor(private val firebaseInstance: FirebaseInstances)  {
-    val posts : MutableLiveData<Resource<MutableList<Post>>> = MutableLiveData()
-    val contactList : MutableLiveData<Resource<MutableList<Contact>>> = MutableLiveData()
-    val postsCurrentUser : MutableLiveData<Resource<MutableList<Post>>> = MutableLiveData()
+class MainRepository @Inject constructor(private val firebaseInstance: FirebaseInstances) {
+
+    val contactList: MutableLiveData<Resource<MutableList<Contact>>> = MutableLiveData()
+    val postsCurrentUser: MutableLiveData<Resource<MutableList<Post>>> = MutableLiveData()
+    val firebaseFirestore = firebaseInstance.getFirebaseFirestore().collection(POST_COLLECTION)
+    private val firebaseUser = firebaseInstance.getFirebaseAuth().currentUser
+
     init {
         gePostsOfCurrentUser()
         getLastMessages()
-        getPostList()
     }
 
-    private fun getPostList(){
-        posts.postValue(Resource.Loading())
-        firebaseInstance.getFirebaseFirestore().collection(POST_COLLECTION)
-                .addSnapshotListener { value, error ->
-                    if (error != null){
-                        posts.postValue(Resource.Failure(error))
-                        return@addSnapshotListener
-                    }
-                    value?.let { posts.postValue(Resource.Success(it.toObjects(Post::class.java)))
-                    }
-                }
-
-    }
 
     private fun getLastMessages() {
         contactList.postValue(Resource.Loading())
@@ -50,7 +39,7 @@ class MainRepository @Inject constructor(private val firebaseInstance: FirebaseI
             firebaseInstance.getFirebaseFirestore().collection(LAST_MESSAGES)
                     .document(firebaseUser.uid).collection(CONTACTS)
                     .addSnapshotListener { value, error ->
-                        if (error != null){
+                        if (error != null) {
                             contactList.postValue(Resource.Failure(error))
                             return@addSnapshotListener
                         }
@@ -63,13 +52,11 @@ class MainRepository @Inject constructor(private val firebaseInstance: FirebaseI
 
     }
 
-    private fun gePostsOfCurrentUser()  {
-        firebaseInstance.getFirebaseFirestore()
-                .collection(POST_COLLECTION)
-                .whereEqualTo("idUser", firebaseInstance.getFirebaseAuth().currentUser?.uid)
+    private fun gePostsOfCurrentUser() {
+        firebaseFirestore.whereEqualTo("idUser", firebaseUser?.uid)
                 .addSnapshotListener { value, error ->
-                    posts.value = Resource.Loading()
-                    if (error != null){
+                    postsCurrentUser.value = Resource.Loading()
+                    if (error != null) {
                         postsCurrentUser.value = Resource.Failure(error)
                         return@addSnapshotListener
                     }
@@ -80,4 +67,4 @@ class MainRepository @Inject constructor(private val firebaseInstance: FirebaseI
                 }
     }
 
-    }
+}

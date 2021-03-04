@@ -24,13 +24,13 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home), View.OnClickListener, FeedAdapter.OnPostClickListener {
-    private var _binding : FragmentHomeBinding? = null
-    private val binding : FragmentHomeBinding get() = _binding!!
+    private var _binding: FragmentHomeBinding? = null
+    private val binding: FragmentHomeBinding get() = _binding!!
 
-    private val rotateOpen : Animation by lazy { AnimationUtils.loadAnimation(context, R.anim.roteta_open_anim) }
-    private val rotateClose : Animation by lazy { AnimationUtils.loadAnimation(context, R.anim.rotate_closed_anim) }
-    private val fromBottom : Animation by lazy { AnimationUtils.loadAnimation(context, R.anim.from_bottom_anim) }
-    private val toBottom : Animation by lazy { AnimationUtils.loadAnimation(context, R.anim.to_bottom_anim) }
+    private val rotateOpen: Animation by lazy { AnimationUtils.loadAnimation(context, R.anim.roteta_open_anim) }
+    private val rotateClose: Animation by lazy { AnimationUtils.loadAnimation(context, R.anim.rotate_closed_anim) }
+    private val fromBottom: Animation by lazy { AnimationUtils.loadAnimation(context, R.anim.from_bottom_anim) }
+    private val toBottom: Animation by lazy { AnimationUtils.loadAnimation(context, R.anim.to_bottom_anim) }
     private var clicked = false
 
     private lateinit var mainViewModel: MainViewModel
@@ -39,8 +39,8 @@ class HomeFragment : Fragment(R.layout.fragment_home), View.OnClickListener, Fee
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
@@ -77,12 +77,12 @@ class HomeFragment : Fragment(R.layout.fragment_home), View.OnClickListener, Fee
 
     private fun setDataToAdapter(data: MutableList<Post>?) {
         try {
-            Log.i(TAG,"List fragment: ${data}")
+            Log.i(TAG, "List fragment: ${data}")
             feedAdapter.differ.submitList(data)
             feedAdapter.notifyDataSetChanged()
 
-        }catch (e : Exception){
-            Log.i(TAG, "Erro : ${e.message}" )
+        } catch (e: Exception) {
+            Log.i(TAG, "Erro : ${e.message}")
         }
     }
 
@@ -93,20 +93,21 @@ class HomeFragment : Fragment(R.layout.fragment_home), View.OnClickListener, Fee
         clicked = !clicked
     }
 
-    private fun isClickable(clicked: Boolean){
-        if (!clicked){
+    private fun isClickable(clicked: Boolean) {
+        if (!clicked) {
             binding.floatingActionButtonCat.isClickable = true
             binding.floatingActionButtonDog.isClickable = true
-        }else{
+        } else {
             binding.floatingActionButtonCat.isClickable = false
             binding.floatingActionButtonDog.isClickable = false
         }
     }
-    private fun setVisibility(clicked : Boolean) {
-        if (!clicked){
+
+    private fun setVisibility(clicked: Boolean) {
+        if (!clicked) {
             binding.floatingActionButtonCat.visibility = View.VISIBLE
             binding.floatingActionButtonDog.visibility = View.VISIBLE
-        }else{
+        } else {
             binding.floatingActionButtonCat.visibility = View.INVISIBLE
             binding.floatingActionButtonDog.visibility = View.INVISIBLE
         }
@@ -114,11 +115,11 @@ class HomeFragment : Fragment(R.layout.fragment_home), View.OnClickListener, Fee
 
     private fun setAnimation(clicked: Boolean) {
 
-        if (!clicked){
+        if (!clicked) {
             binding.floatingActionButtonCat.startAnimation(fromBottom)
             binding.floatingActionButtonDog.startAnimation(fromBottom)
             binding.floatingActionButtonAdd.startAnimation(rotateOpen)
-        }else{
+        } else {
             binding.floatingActionButtonCat.startAnimation(toBottom)
             binding.floatingActionButtonDog.startAnimation(toBottom)
             binding.floatingActionButtonAdd.startAnimation(rotateClose)
@@ -129,23 +130,24 @@ class HomeFragment : Fragment(R.layout.fragment_home), View.OnClickListener, Fee
         val sharedPreferences = requireContext().getSharedPreferences(SHARED_ANIMAL_KEY, Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
 
-        when(v.id){
+        when (v.id) {
             R.id.floatingActionButtonDog -> {
-                editor.putString(ANIMAL_KEY,getString(R.string.dog))
+                editor.putString(ANIMAL_KEY, getString(R.string.dog))
                 findNavController().navigate(R.id.action_homeFragment_to_pickAddressMapsFragment)
 
             }
             R.id.floatingActionButtonCat -> {
-                editor.putString(ANIMAL_KEY,getString(R.string.cat))
+                editor.putString(ANIMAL_KEY, getString(R.string.cat))
                 findNavController().navigate(R.id.action_homeFragment_to_pickAddressMapsFragment)
             }
         }
         editor.apply()
     }
+
     override fun onClick(v: View?) {
         v?.let {
             choiceAnimalType(it)
-            if(it.id == R.id.floatingActionButtonAdd){
+            if (it.id == R.id.floatingActionButtonAdd) {
                 addButtonClicked()
 
             }
@@ -159,12 +161,11 @@ class HomeFragment : Fragment(R.layout.fragment_home), View.OnClickListener, Fee
 
     override fun onPostClick(post: Post) {
         val postBundle = Bundle().apply {
-            putParcelable(POST_KEY,post)
+            putParcelable(POST_KEY, post)
         }
-        findNavController().navigate(R.id.action_homeFragment_to_detailFragment,postBundle)
+        findNavController().navigate(R.id.action_homeFragment_to_detailFragment, postBundle)
 
     }
-
 
 
 }
