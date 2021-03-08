@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:elevation="8dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:backgroundTint="@color/ice"
+    android:elevation="8dp"
     app:cardCornerRadius="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,10 +16,10 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewDeletePost"
             android:layout_width="wrap_content"
-            android:fontFamily="@font/quicksand_medium"
             android:layout_height="wrap_content"
-            android:text="@string/deseja_excluir_este_post"
             android:textColor="@color/black"
+            android:textStyle="bold"
+            android:text="@string/deseja_excluir_este_post"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -28,45 +28,38 @@
             android:id="@+id/textViewConfirm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tem_certeza"
-            android:textColor="@color/black"
-            android:fontFamily="@font/quicksand_medium"
-            android:textSize="14sp"
             android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/tem_certeza"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@+id/textViewDeletePost" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewNoDeleteDialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:layout_marginEnd="22dp"
             android:text="@string/nao"
             android:textSize="14sp"
-            android:layout_marginEnd="22dp"
-            android:fontFamily="@font/quicksand_medium"
             app:layout_constraintBottom_toBottomOf="@+id/buttonConfirmDeleteDialog"
             app:layout_constraintEnd_toStartOf="@+id/buttonConfirmDeleteDialog"
             app:layout_constraintTop_toTopOf="@+id/buttonConfirmDeleteDialog" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonConfirmDeleteDialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_button_default"
-            android:text="@string/confirmar"
+            android:layout_marginTop="22dp"
             android:fontFamily="@font/quicksand_medium"
+            android:text="@string/confirmar"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:layout_marginTop="22dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewConfirm" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 
 </androidx.cardview.widget.CardView>

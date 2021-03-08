@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorPrimary"
     tools:context=".ui.fragments.LoginFragment">
 
@@ -13,7 +13,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:text="@string/cade_meu_pet"
-        android:fontFamily="@font/quicksand_medium"
         android:textColor="@color/colorWhite"
         android:textSize="32sp"
         android:textStyle="bold"
@@ -40,18 +39,18 @@
             android:id="@+id/editTextEmailLogin"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/quicksand_medium"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/bg_edit_login"
             android:drawableStart="@drawable/ic_email"
             android:drawablePadding="10dp"
+            android:fontFamily="@font/quicksand_medium"
             android:hint="@string/email"
-            android:textColorHint="@color/colorGray"
-            android:textColor="@color/black"
             android:inputType="textEmailAddress"
-            android:padding="15dp" />
+            android:padding="15dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/colorGray" />
 
 
         <androidx.appcompat.widget.AppCompatEditText
@@ -64,33 +63,31 @@
             android:background="@drawable/bg_edit_login"
             android:drawableStart="@drawable/ic_password"
             android:drawablePadding="10dp"
-            android:hint="@string/password"
             android:fontFamily="@font/quicksand_medium"
-            android:textColorHint="@color/colorGray"
-            android:textColor="@color/black"
+            android:hint="@string/password"
             android:inputType="textPassword"
-            android:padding="15dp" />
+            android:padding="15dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/colorGray" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonLogin"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:fontFamily="@font/quicksand_medium"
             android:layout_marginTop="16dp"
-            android:background="@drawable/bg_button_default"
             android:text="@string/login"
             android:textAllCaps="false"
             android:textColor="@color/colorWhite" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <Button
             android:id="@+id/buttonRegisterHere"
+            style="@style/outlineButtonDefault"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/quicksand_medium"
-            android:background="@drawable/bg_bottom_register_here"
             android:text="@string/clique_aqui_para_se_registrar"
             android:textColor="@color/colorSalmao" />
 

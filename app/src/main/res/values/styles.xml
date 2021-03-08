@@ -1,21 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
-        <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
         <item name="android:textViewStyle">@font/quicksand_medium</item>
+        <item name="fontFamily">@font/quicksand_medium</item>
+
+        <item name="android:colorBackground">@color/colorBackground</item>
+
+        <item name="materialButtonStyle">@style/buttonDefault</item>
+        <item name="materialButtonOutlinedStyle">@style/outlineButtonDefault</item>
+
+
 
 
     </style>
 
-    <style name="ToolbarStyle" parent="Widget.AppCompat.Toolbar">
-        <item name="titleTextAppearance">@style/ToolbarStyle.Title</item>
+    <style name="buttonDefault" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/colorSalmao</item>
+        <item name="cornerRadius">10dp</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
     </style>
-    <style name="ToolbarStyle.Title" parent="TextAppearance.AppCompat.Title">
-        <item name="android:textColor">@color/colorWhite</item>
+
+    <style name="outlineButtonDefault" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@color/colorSalmao</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="cornerRadius">10dp</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
     </style>
 
 
@@ -25,11 +44,4 @@
         <item name="stRadius">10dp</item>
     </style>
 
-
-    <style name="CustomActivityAnimation" parent="@android:style/Animation.Activity">
-        <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
-        <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
-        <item name="android:activityCloseEnterAnimation">@anim/slide_in_left</item>
-        <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
-    </style>
 </resources>

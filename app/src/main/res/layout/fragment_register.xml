@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorPrimary"
     tools:context=".ui.fragments.RegisterFragment">
 
@@ -11,30 +11,31 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.AppCompatButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonOpenGalery"
             android:layout_width="160dp"
             android:layout_height="160dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/bg_button_open_galery"
+            android:fontFamily="@font/quicksand_medium"
             android:text="@string/clique_aqui"
             android:textColor="@color/colorWhite"
-            android:fontFamily="@font/quicksand_medium"
-            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:rippleColor="@color/mtrl_btn_ripple_color" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageViewUserPhotoRegister"
             android:layout_width="160dp"
             android:layout_height="160dp"
+            android:layout_marginTop="16dp"
             app:civ_border_color="@color/colorSalmao"
             app:civ_border_width="2dp"
-            android:layout_marginTop="16dp"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/linearLayout"
@@ -62,14 +63,14 @@
                 android:id="@+id/editTextLastNameRegister"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/bg_edit_login"
                 android:drawableStart="@drawable/ic_profile"
                 android:drawablePadding="10dp"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/black"
                 android:fontFamily="@font/quicksand_medium"
                 android:hint="Sobrenome"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:textColor="@color/black" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/editTextEmailRegister"
@@ -122,15 +123,14 @@
                 android:inputType="textPassword" />
 
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonRegister"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_button_default"
+                android:layout_marginTop="18dp"
                 android:fontFamily="@font/quicksand_medium"
                 android:text="@string/register"
                 android:textAllCaps="false"
-                android:layout_marginTop="30dp"
                 android:textColor="@color/white" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>

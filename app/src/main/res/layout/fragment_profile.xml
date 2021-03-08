@@ -1,30 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/ice"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.ProfileFragment">
 
     <ImageButton
         android:id="@+id/imageButtonSettings"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:src="@drawable/ic_settings"
-        android:background="?attr/selectableItemBackground"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp"
+        android:background="?attr/selectableItemBackground"
+        android:src="@drawable/ic_settings"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageViewUserPhotoProfile"
         android:layout_width="160dp"
         android:layout_height="160dp"
-        app:civ_border_color="@color/colorOrange"
-        app:civ_border_width="1dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="50dp"
+        app:civ_border_color="@color/colorOrange"
+        app:civ_border_width="1dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,7 +32,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:fontFamily="@font/quicksand_medium"
         android:textSize="19sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imageViewUserPhotoProfile"
@@ -59,7 +57,6 @@
             android:layout_margin="5dp"
             android:drawableStart="@drawable/ic_email"
             android:drawablePadding="10dp"
-            android:fontFamily="@font/quicksand_medium"
             tools:text="fulano@gmail.com" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -69,7 +66,6 @@
             android:layout_margin="5dp"
             android:drawableStart="@drawable/ic_phone"
             android:drawablePadding="10dp"
-            android:fontFamily="@font/quicksand_medium"
             tools:text="(22) 92870244" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -79,12 +75,11 @@
         android:id="@+id/textViewPublications"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/quicksand_medium"
+        android:layout_margin="16dp"
         android:text="@string/publica_es"
         android:textColor="@color/colorSalmao"
         android:textSize="22sp"
         android:textStyle="bold"
-        android:layout_margin="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat" />
 
@@ -95,7 +90,6 @@
         android:text="@string/voc_n_o_possui_publica_es"
         android:textColor="@color/colorBlack"
         android:textSize="19sp"
-        android:fontFamily="@font/quicksand_medium"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -111,14 +105,10 @@
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:listitem="@layout/item_profile"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewPublications"
-        app:spanCount="3" />
-
-
-
-
+        app:spanCount="3"
+        tools:listitem="@layout/item_profile" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

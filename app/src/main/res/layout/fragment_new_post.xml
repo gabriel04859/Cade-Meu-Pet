@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorBackground"
     tools:context=".ui.fragments.NewPostFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,12 +16,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
+            android:focusable="true"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:focusable="true" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <include
             android:id="@+id/includeButtonsPickImage"
@@ -44,10 +43,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_edit_login"
-                android:drawableTint="@color/black"
                 android:drawableStart="@drawable/ic_pets"
-                android:fontFamily="@font/quicksand_medium"
                 android:drawablePadding="10dp"
+                android:drawableTint="@color/black"
                 android:ems="10"
                 android:hint="@string/name"
                 android:inputType="textPersonName" />
@@ -57,34 +55,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:padding="5dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="5dp">
 
                 <RadioButton
                     android:id="@+id/radioButtonMale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
                     android:layout_margin="5dp"
-                    android:textColor="@drawable/text_color_radio"
+                    android:layout_marginEnd="10dp"
                     android:background="@drawable/bg_radion_button_selector"
                     android:button="@android:color/transparent"
                     android:elevation="4dp"
                     android:fontFamily="@font/quicksand_medium"
-                    android:text="@string/macho" />
+                    android:text="@string/macho"
+                    android:textColor="@drawable/text_color_radio" />
 
                 <RadioButton
                     android:id="@+id/radioButtonFemale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:button="@android:color/transparent"
-                    android:textColor="@drawable/text_color_radio"
-                    android:elevation="4dp"
                     android:layout_margin="5dp"
+                    android:layout_marginStart="10dp"
                     android:background="@drawable/bg_radion_button_selector"
+                    android:button="@android:color/transparent"
+                    android:elevation="4dp"
                     android:fontFamily="@font/quicksand_medium"
-                    android:text="@string/femea" />
+                    android:text="@string/femea"
+                    android:textColor="@drawable/text_color_radio" />
             </RadioGroup>
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -92,9 +90,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="?attr/selectableItemBackground"
-                android:fontFamily="@font/quicksand_medium"
                 android:layout_marginBottom="10dp"
+                android:background="?attr/selectableItemBackground"
                 android:drawableStart="@drawable/ic_place"
                 android:drawablePadding="10dp"
                 android:textSize="18sp" />
@@ -106,17 +103,16 @@
                 android:background="@drawable/bg_edit_login"
                 android:drawableStart="@drawable/ic_date"
                 android:drawablePadding="10dp"
-                android:hint="Data"/>
+                android:hint="Data" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textViewSize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:fontFamily="@font/quicksand_medium"
                 android:text="@string/indique_o_porte_abaixo"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <SeekBar
                 android:id="@+id/seekBarPorte"
@@ -130,8 +126,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:padding="8dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="8dp">
 
 
                 <RadioButton
@@ -139,36 +135,35 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
-                    android:textColor="@drawable/text_color_radio"
                     android:background="@drawable/bg_radion_button_selector"
                     android:button="@android:color/transparent"
                     android:elevation="4dp"
                     android:fontFamily="@font/quicksand_medium"
-                    android:text="@string/lost" />
+                    android:text="@string/lost"
+                    android:textColor="@drawable/text_color_radio" />
 
                 <RadioButton
                     android:id="@+id/radioButtonFinder"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
-                    android:textColor="@drawable/text_color_radio"
                     android:background="@drawable/bg_radion_button_selector"
                     android:button="@android:color/transparent"
                     android:elevation="4dp"
                     android:fontFamily="@font/quicksand_medium"
-                    android:text="@string/finder" />
+                    android:text="@string/finder"
+                    android:textColor="@drawable/text_color_radio" />
 
                 <RadioButton
                     android:id="@+id/radioButtoDonate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
-                    android:textColor="@drawable/text_color_radio"
                     android:background="@drawable/bg_radion_button_selector"
                     android:button="@android:color/transparent"
                     android:elevation="4dp"
-                    android:fontFamily="@font/quicksand_medium"
-                    android:text="@string/donate" />
+                    android:text="@string/donate"
+                    android:textColor="@drawable/text_color_radio" />
             </RadioGroup>
 
             <androidx.appcompat.widget.AppCompatEditText
@@ -179,20 +174,18 @@
                 android:background="@drawable/bg_edit_login"
                 android:drawablePadding="10dp"
                 android:hint="@string/coment"
-                android:fontFamily="@font/quicksand_medium"
                 android:inputType="text" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonPost"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="10dp"
-                android:background="@drawable/bg_button_selector"
+                android:fontFamily="@font/quicksand_medium"
                 android:text="@string/publicar"
                 android:textColor="@color/colorWhite"
-                android:fontFamily="@font/quicksand_medium"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />

@@ -41,7 +41,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="5dp"
-                android:fontFamily="@font/quicksand_medium"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -53,9 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:fontFamily="@font/quicksand_medium"
                 android:text="Mais Informações"
-                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -63,7 +60,6 @@
                 android:id="@+id/textViewSizeDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/quicksand_medium"
                 android:gravity="center"
                 android:textSize="12sp"
                 tools:text="Tamanho: Pequeno" />
@@ -74,7 +70,6 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textSize="12sp"
-                app:fontFamily="@font/quicksand_medium"
                 tools:text="Sexo: Macho" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -83,7 +78,6 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textSize="12sp"
-                app:fontFamily="@font/quicksand_medium"
                 tools:text="Perdido em 20/20/20" />
 
 
@@ -97,7 +91,6 @@
                 android:padding="3dp"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                app:fontFamily="@font/quicksand_medium"
                 tools:text="Rua tal tal tal n 2020" />
 
 
@@ -164,6 +157,7 @@
                         android:layout_marginTop="8dp"
                         android:background="?attr/selectableItemBackground"
                         android:backgroundTint="@color/colorSalmao"
+                        app:tint="@color/white"
                         android:src="@drawable/ic_send"
                         android:visibility="gone" />
 
@@ -176,6 +170,7 @@
                         android:layout_marginTop="8dp"
                         android:background="?attr/selectableItemBackground"
                         android:backgroundTint="@color/colorSalmao"
+                        app:tint="@color/white"
                         android:src="@drawable/ic_delete"
                         android:visibility="visible" />
 
