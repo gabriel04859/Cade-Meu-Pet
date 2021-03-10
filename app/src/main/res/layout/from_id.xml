@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/textViewShowMessage"
+        android:id="@+id/textViewFromIdMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
@@ -15,7 +15,7 @@
         android:padding="10dp"
         android:backgroundTint="@color/colorSalmao"
         android:layout_marginEnd="8dp"
-        tools:text="MESSAGEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"
+        tools:text="From id Message"
         android:textColor="@color/colorWhite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

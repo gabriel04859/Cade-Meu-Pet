@@ -9,23 +9,31 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.gabriel.ribeiro.cademeupet.R
+import com.gabriel.ribeiro.cademeupet.databinding.ItemFeedBinding
 import com.gabriel.ribeiro.cademeupet.model.Post
 import com.squareup.picasso.Picasso
 
-class FeedAdapter(private val onPostClickListener : OnPostClickListener) : RecyclerView.Adapter<FeedAdapter.FeedViewHolder>() {
+class FeedAdapter(private val onPostClickListener: OnPostClickListener) : RecyclerView.Adapter<FeedAdapter.FeedViewHolder>() {
 
-    inner class FeedViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
-        val imageViewAnimalItemFeed : ImageView = itemView.findViewById(R.id.imageViewAnimalItemFeed)
-        val textNameAnimalItemFeed : TextView = itemView.findViewById(R.id.textNameAnimalItemFeed)
-        val textViewAddressItemFeed : TextView = itemView.findViewById(R.id.textViewAddressItemFeed)
+    inner class FeedViewHolder(private val binding: ItemFeedBinding) : RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(post: Post) {
+            binding.apply {
+                Picasso.with(itemView.context).load(post.animal?.imageUrl).placeholder(R.drawable.d_placeholder).into(imageViewAnimalItemFeed)
+                textNameAnimalItemFeed.text = post.animal?.name
+                val addressText = "${post.address?.street} - ${post.address?.street}"
+                textViewAddressItemFeed.text = addressText
+            }
+
+        }
 
     }
 
-    interface OnPostClickListener{
-        fun onPostClick(post : Post)
+    interface OnPostClickListener {
+        fun onPostClick(post: Post)
     }
 
-    private val differCallback = object : DiffUtil.ItemCallback<Post>(){
+    private val differCallback = object : DiffUtil.ItemCallback<Post>() {
         override fun areItemsTheSame(oldItem: Post, newItem: Post): Boolean {
             return oldItem.idPost == newItem.idPost
         }
@@ -36,26 +44,14 @@ class FeedAdapter(private val onPostClickListener : OnPostClickListener) : Recyc
 
     }
 
-    var differ = AsyncListDiffer(this,differCallback)
+    var differ = AsyncListDiffer(this, differCallback)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedViewHolder {
-        return FeedViewHolder(
-                LayoutInflater.from(parent.context).inflate(R.layout.item_feed, parent, false)
-        )
+        return FeedViewHolder(ItemFeedBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: FeedViewHolder, position: Int) {
         val post = differ.currentList[position]
-        holder.itemView.apply {
-            post?.let {post ->
-                post.address?.let {
-                    holder.textViewAddressItemFeed.text = it.street
-                }
-                post.animal?.let {
-                    Picasso.with(context).load(it.imageUrl).placeholder(R.drawable.d_placeholder).into(holder.imageViewAnimalItemFeed)
-                    holder.textNameAnimalItemFeed.text = it.name
-                }
-            }
-        }
+        holder.bind(post)
 
         holder.itemView.setOnClickListener {
             onPostClickListener.onPostClick(post)
