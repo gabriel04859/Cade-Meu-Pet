@@ -35,7 +35,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), View.OnClickListener, Fee
 
     private lateinit var mainViewModel: MainViewModel
     private val feedAdapter by lazy {
-        FeedAdapter(this)
+        FeedAdapter(this, requireContext())
     }
 
     override fun onCreateView(

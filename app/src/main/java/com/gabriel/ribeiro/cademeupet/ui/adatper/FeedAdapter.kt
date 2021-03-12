@@ -1,5 +1,6 @@
 package com.gabriel.ribeiro.cademeupet.ui.adatper
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,13 +14,13 @@ import com.gabriel.ribeiro.cademeupet.databinding.ItemFeedBinding
 import com.gabriel.ribeiro.cademeupet.model.Post
 import com.squareup.picasso.Picasso
 
-class FeedAdapter(private val onPostClickListener: OnPostClickListener) : RecyclerView.Adapter<FeedAdapter.FeedViewHolder>() {
+class FeedAdapter(private val onPostClickListener: OnPostClickListener, val context  : Context) : RecyclerView.Adapter<FeedAdapter.FeedViewHolder>() {
 
     inner class FeedViewHolder(private val binding: ItemFeedBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(post: Post) {
             binding.apply {
-                Picasso.with(itemView.context).load(post.animal?.imageUrl).placeholder(R.drawable.d_placeholder).into(imageViewAnimalItemFeed)
+                Picasso.with(context).load(post.animal?.imageUrl).placeholder(R.drawable.d_placeholder).into(imageViewAnimalItemFeed)
                 textNameAnimalItemFeed.text = post.animal?.name
                 val addressText = "${post.address?.street} - ${post.address?.street}"
                 textViewAddressItemFeed.text = addressText
